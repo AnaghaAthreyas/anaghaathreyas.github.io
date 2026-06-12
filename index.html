@@ -6,435 +6,409 @@
 <title>Anagha Athreyas — Finance & Accounting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#F7F8FC;
-  --white:#FFFFFF;
-  --ink:#0D1117;
-  --ink-mid:#2D3748;
-  --ink-muted:#64748B;
-  --ink-faint:#94A3B8;
-  --border:#E2E8F0;
-  --border-s:#CBD5E1;
-  --blue:#1E3A5F;
-  --blue-mid:#2B5080;
-  --blue-light:#EBF2FF;
-  --blue-border:#C7D9F0;
-  --accent:#C8934A;
-  --accent-light:#FDF3E7;
-  --accent-border:#E8C99A;
-  --green:#16A34A;
-  --sidebar-w:280px;
-  --mono:'JetBrains Mono',monospace;
-  --serif:'Playfair Display',serif;
-  --sans:'Inter',sans-serif;
+  --forest:#1B3A2D;--forest-mid:#234E3C;--forest-light:#EBF2ED;--forest-border:#C2D9C8;
+  --stone:#F5F2EC;--stone-mid:#EDE8DF;--white:#FFFFFF;
+  --ink:#1A1A18;--ink-mid:#3D3D38;--ink-muted:#6B6B62;--ink-faint:#A0A098;
+  --border:#E4E0D8;--border-s:#D0CBbf;
+  --gold:#8B6914;--gold-light:#F7F0E0;--gold-border:#D4B96A;
+  --mono:'JetBrains Mono',monospace;--serif:'Cormorant Garamond',serif;--sans:'Inter',sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:16px;overflow-x:hidden}
+body{font-family:var(--sans);background:var(--stone);color:var(--ink);line-height:1.7;font-size:16px;overflow-x:hidden}
 
-/* ── LAYOUT ── */
-.layout{display:flex;min-height:100vh}
+/* NAV */
+.topnav{position:fixed;top:0;left:0;right:0;z-index:200;height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;transition:all .35s}
+.topnav.scrolled{background:rgba(245,242,236,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--serif);font-size:1.15rem;font-weight:400;color:var(--white);text-decoration:none;letter-spacing:.02em;transition:color .3s}
+.topnav.scrolled .nav-logo{color:var(--ink)}
+.nav-links{display:flex;gap:2.25rem;list-style:none}
+.nav-links a{font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,0.75);text-decoration:none;transition:color .2s}
+.topnav.scrolled .nav-links a{color:var(--ink-muted)}
+.nav-links a:hover{color:var(--white)}
+.topnav.scrolled .nav-links a:hover{color:var(--forest)}
+@media(max-width:768px){.nav-links{display:none}.topnav{padding:0 1.5rem}}
 
-/* ── SIDEBAR ── */
-.sidebar{width:var(--sidebar-w);min-width:var(--sidebar-w);height:100vh;position:fixed;top:0;left:0;background:var(--blue);display:flex;flex-direction:column;padding:2.75rem 1.75rem;z-index:100;overflow:hidden}
-.sidebar::after{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(transparent,var(--blue));pointer-events:none}
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;padding:6rem 2rem 5rem}
+.hero-bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1800&q=80&auto=format&fit=crop');background-size:cover;background-position:center;z-index:0}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(15,35,25,0.82) 0%,rgba(27,58,45,0.75) 50%,rgba(10,20,15,0.88) 100%)}
+.hero-content{position:relative;z-index:1;max-width:780px}
+.hero-kicker{font-family:var(--mono);font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,0.55);margin-bottom:2rem;display:flex;align-items:center;justify-content:center;gap:.75rem}
+.hero-kicker::before,.hero-kicker::after{content:'';width:30px;height:.5px;background:rgba(255,255,255,0.35)}
+.hero-name{font-family:var(--serif);font-size:clamp(3.5rem,9vw,7rem);line-height:1.05;color:var(--white);letter-spacing:.02em;font-weight:300;margin-bottom:1.75rem}
+.hero-name span{display:block}
+.hero-name .last{font-style:italic;color:rgba(255,255,255,0.85)}
+.hero-tagline{font-size:1.05rem;color:rgba(255,255,255,0.65);max-width:500px;margin:0 auto 3rem;line-height:1.9;font-weight:300}
+.hero-tags{display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center;margin-bottom:3.5rem}
+.htag{font-family:var(--mono);font-size:.63rem;letter-spacing:.06em;padding:.3rem .85rem;border-radius:3px;border:1px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.05)}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-white{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:var(--white);color:var(--forest);border-radius:4px;font-size:.86rem;font-weight:600;text-decoration:none;letter-spacing:.03em;transition:all .2s}
+.btn-white:hover{background:var(--stone);transform:translateY(-1px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-ghost-w{display:inline-flex;align-items:center;gap:.5rem;padding:.85rem 2rem;background:transparent;color:rgba(255,255,255,0.8);border:1px solid rgba(255,255,255,0.3);border-radius:4px;font-size:.86rem;font-weight:500;text-decoration:none;transition:all .2s}
+.btn-ghost-w:hover{border-color:rgba(255,255,255,0.65);color:var(--white)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);z-index:1}
+.scroll-dot{width:1px;height:40px;background:linear-gradient(transparent,rgba(255,255,255,0.4));animation:scrollDot 1.8s ease-in-out infinite}
+@keyframes scrollDot{0%,100%{opacity:.3}50%{opacity:.7}}
 
-/* Name centered in sidebar */
-.s-brand{text-align:center;margin-bottom:2.25rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,0.1)}
-.s-name{font-family:var(--serif);font-size:1.35rem;color:#FFFFFF;line-height:1.25;letter-spacing:-.01em;white-space:nowrap}
-.s-name em{font-style:italic;color:var(--accent)}
-.s-role{font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,0.45);letter-spacing:.12em;text-transform:uppercase;margin-top:.4rem}
+/* STRIP */
+.intro-strip{background:var(--forest);padding:3.5rem 4rem;display:flex;gap:4rem;align-items:center;justify-content:center}
+@media(max-width:768px){.intro-strip{flex-direction:column;gap:2rem;padding:3rem 1.5rem;text-align:center}}
+.strip-stat{text-align:center}
+.strip-num{font-family:var(--serif);font-size:2.8rem;color:var(--white);line-height:1;font-weight:300}
+.strip-lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-top:.3rem}
+.strip-div{width:1px;height:50px;background:rgba(255,255,255,0.15)}
+@media(max-width:768px){.strip-div{width:50px;height:1px}}
 
-.s-status{display:flex;align-items:center;justify-content:center;gap:.5rem;font-family:var(--mono);font-size:.65rem;color:#4ADE80;margin-bottom:2rem;letter-spacing:.06em;background:rgba(74,222,128,0.08);border:1px solid rgba(74,222,128,0.2);border-radius:100px;padding:.4rem .9rem}
-.s-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ADE80;box-shadow:0 0 6px #4ADE80;flex-shrink:0;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+/* SECTIONS */
+.section{padding:7rem 4rem;max-width:1100px;margin:0 auto}
+@media(max-width:768px){.section{padding:4.5rem 1.5rem}}
+.exp-bg{background:var(--white)}
+.exp-inner{max-width:1100px;margin:0 auto;padding:7rem 4rem}
+.impact-bg{background:var(--stone-mid)}
+.impact-inner{max-width:1100px;margin:0 auto;padding:7rem 4rem}
+.skills-bg{background:var(--white)}
+.skills-inner{max-width:1100px;margin:0 auto;padding:7rem 4rem}
+.contact-bg{background:var(--forest)}
+.contact-inner{max-width:1100px;margin:0 auto;padding:7rem 4rem}
+@media(max-width:768px){.exp-inner,.impact-inner,.skills-inner,.contact-inner{padding:4.5rem 1.5rem}}
+.divider-line{border:none;border-top:1px solid var(--border)}
 
-.s-nav{display:flex;flex-direction:column;gap:.2rem;flex:1}
-.s-nav a{display:flex;align-items:center;gap:.75rem;padding:.55rem .9rem;border-radius:7px;text-decoration:none;font-size:.79rem;font-weight:500;color:rgba(255,255,255,0.5);letter-spacing:.02em;transition:all .2s;position:relative}
-.s-nav a:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.07)}
-.s-nav a.active{color:#FFFFFF;background:rgba(255,255,255,0.1)}
-.s-nav a.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2.5px;height:55%;background:var(--accent);border-radius:0 2px 2px 0}
-.nav-icon{width:15px;height:15px;opacity:.7;flex-shrink:0}
-.s-nav a:hover .nav-icon,.s-nav a.active .nav-icon{opacity:1}
+.s-eye{font-family:var(--mono);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--forest);margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.s-eye::before{content:'';width:20px;height:1px;background:var(--forest)}
+.s-h{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);line-height:1.06;color:var(--ink);margin-bottom:1.3rem;letter-spacing:-.01em;font-weight:400}
+.s-h em{font-style:italic;color:var(--forest)}
+.s-p{font-size:.97rem;color:var(--ink-muted);max-width:580px;line-height:1.9;margin-bottom:3.5rem}
 
-.s-socials{display:flex;gap:.6rem;margin-top:2rem;padding-top:1.75rem;border-top:1px solid rgba(255,255,255,0.1);justify-content:center}
-.s-social{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:7px;border:1px solid rgba(255,255,255,0.15);color:rgba(255,255,255,0.5);transition:all .2s;text-decoration:none}
-.s-social:hover{border-color:var(--accent);color:var(--accent);background:rgba(200,147,74,0.1)}
+/* ABOUT */
+.about-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+@media(max-width:640px){.about-layout{grid-template-columns:1fr}}
+.a-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.75rem;transition:border-color .2s,box-shadow .2s}
+.a-card:hover{border-color:var(--forest-border);box-shadow:0 4px 20px rgba(27,58,45,0.07)}
+.a-card-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.9rem}
+.a-icon{width:38px;height:38px;border-radius:8px;background:var(--forest-light);border:1px solid var(--forest-border);display:flex;align-items:center;justify-content:center;font-size:1.05rem;flex-shrink:0}
+.a-card h3{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--forest)}
+.a-card p{font-size:.89rem;color:var(--ink-muted);line-height:1.75}
 
-/* ── MAIN ── */
-.main{margin-left:var(--sidebar-w);flex:1}
-
-/* ── SECTIONS ── */
-.section{padding:5.5rem 4.5rem;border-bottom:1px solid var(--border)}
-.section:last-of-type{border-bottom:none}
-
-.s-eye{font-family:var(--mono);font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:.9rem;display:flex;align-items:center;gap:.65rem}
-.s-eye::before{content:'';width:22px;height:1px;background:var(--blue-mid)}
-.s-h{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);line-height:1.07;color:var(--ink);margin-bottom:1.25rem;letter-spacing:-.02em}
-.s-h em{font-style:italic;color:var(--blue-mid)}
-.s-p{font-size:.96rem;color:var(--ink-muted);max-width:580px;line-height:1.85;margin-bottom:3.25rem}
-
-/* ── HERO ── */
-.hero-section{padding:7rem 4.5rem 5.5rem;border-bottom:1px solid var(--border);min-height:100vh;display:flex;flex-direction:column;justify-content:center;background:var(--white)}
-.hero-kicker{font-family:var(--mono);font-size:.67rem;letter-spacing:.2em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:2rem;display:flex;align-items:center;gap:.7rem}
-.hero-kicker::before{content:'';width:24px;height:1px;background:var(--blue-mid)}
-.hero-h{font-family:var(--serif);font-size:clamp(3.2rem,7vw,5.2rem);line-height:.97;color:var(--ink);margin-bottom:2rem;letter-spacing:-.03em}
-.hero-h em{font-style:italic;color:var(--blue-mid)}
-.hero-p{font-size:1.05rem;color:var(--ink-muted);max-width:510px;line-height:1.9;margin-bottom:3rem}
-.hero-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:3.5rem}
-.htag{font-family:var(--mono);font-size:.65rem;letter-spacing:.05em;padding:.3rem .8rem;border-radius:4px;border:1px solid var(--border-s);color:var(--ink-muted);background:var(--bg)}
-.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
-.btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.75rem;background:var(--blue);color:#fff;border-radius:7px;font-size:.87rem;font-weight:600;text-decoration:none;transition:all .2s;letter-spacing:.02em;border:none;cursor:pointer}
-.btn-primary:hover{background:var(--blue-mid);transform:translateY(-1px);box-shadow:0 6px 20px rgba(30,58,95,0.25)}
-.btn-outline{display:inline-flex;align-items:center;gap:.5rem;padding:.8rem 1.75rem;background:transparent;color:var(--ink);border:1.5px solid var(--border-s);border-radius:7px;font-size:.87rem;font-weight:500;text-decoration:none;transition:all .2s}
-.btn-outline:hover{border-color:var(--blue);color:var(--blue)}
-
-/* ── ABOUT CARDS ── */
-.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.5rem}
-.a-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.6rem;transition:border-color .2s,box-shadow .2s}
-.a-card:hover{border-color:var(--blue-border);box-shadow:0 4px 16px rgba(30,58,95,0.07)}
-.a-card-top{display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem}
-.a-card-icon{width:36px;height:36px;border-radius:8px;background:var(--blue-light);border:1px solid var(--blue-border);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
-.a-card h3{font-family:var(--mono);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--blue-mid)}
-.a-card p{font-size:.88rem;color:var(--ink-muted);line-height:1.72}
-
-/* ── TIMELINE ── */
+/* TIMELINE */
 .timeline{display:flex;flex-direction:column;position:relative}
-.timeline::before{content:'';position:absolute;left:0;top:10px;bottom:0;width:1px;background:var(--border-s)}
-.t-item{padding-left:2.25rem;padding-bottom:3rem;position:relative}
-.t-item::before{content:'';position:absolute;left:-4px;top:10px;width:9px;height:9px;border-radius:50%;background:var(--white);border:2px solid var(--blue);z-index:1}
-.t-meta{font-family:var(--mono);font-size:.65rem;color:var(--ink-faint);letter-spacing:.09em;margin-bottom:.35rem}
-.t-role{font-size:1.04rem;font-weight:600;color:var(--ink);margin-bottom:.15rem}
-.t-org{font-family:var(--mono);font-size:.77rem;color:var(--blue-mid);margin-bottom:.75rem;letter-spacing:.04em}
-.t-desc{font-size:.9rem;color:var(--ink-muted);line-height:1.82}
-.t-story{background:var(--blue-light);border:1px solid var(--blue-border);border-left:3px solid var(--blue);border-radius:0 8px 8px 0;padding:1.1rem 1.4rem;margin-top:1.1rem;font-size:.88rem;color:var(--ink-mid);line-height:1.82}
-.t-story strong{color:var(--blue);font-weight:600}
+.timeline::before{content:'';position:absolute;left:0;top:14px;bottom:0;width:1px;background:var(--border-s)}
+.t-item{padding-left:2.5rem;padding-bottom:3.5rem;position:relative}
+.t-item::before{content:'';position:absolute;left:-5px;top:12px;width:11px;height:11px;border-radius:50%;background:var(--white);border:2px solid var(--forest);z-index:1}
+.t-meta{font-family:var(--mono);font-size:.62rem;color:var(--ink-faint);letter-spacing:.1em;margin-bottom:.4rem}
+.t-role{font-size:1.06rem;font-weight:600;color:var(--ink);margin-bottom:.15rem;letter-spacing:-.01em}
+.t-org{font-family:var(--mono);font-size:.77rem;color:var(--forest);margin-bottom:.8rem;letter-spacing:.04em}
+.t-desc{font-size:.91rem;color:var(--ink-muted);line-height:1.85}
+.t-story{background:var(--forest-light);border:1px solid var(--forest-border);border-left:3px solid var(--forest);border-radius:0 8px 8px 0;padding:1.15rem 1.5rem;margin-top:1.15rem;font-size:.89rem;color:var(--ink-mid);line-height:1.85}
+.t-story strong{color:var(--forest);font-weight:600}
 
-/* ── PROJECTS ── */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.proj-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.6rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.5rem;transition:all .2s}
-.proj-card:hover{border-color:var(--blue-border);box-shadow:0 4px 20px rgba(30,58,95,0.08);transform:translateY(-2px)}
+/* PROJECTS */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:640px){.proj-grid{grid-template-columns:1fr}}
+.proj-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.75rem;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:.5rem;transition:all .2s}
+.proj-card:hover{border-color:var(--forest-border);box-shadow:0 6px 24px rgba(27,58,45,0.09);transform:translateY(-2px)}
 .proj-top{display:flex;align-items:center;justify-content:space-between}
-.proj-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--blue-mid);background:var(--blue-light);border:1px solid var(--blue-border);padding:.2rem .65rem;border-radius:4px}
-.proj-arrow{color:var(--ink-faint);font-size:.9rem;transition:transform .2s}
-.proj-card:hover .proj-arrow{transform:translate(2px,-2px);color:var(--blue)}
-.proj-card h3{font-size:.95rem;font-weight:600;color:var(--ink)}
-.proj-card p{font-size:.83rem;color:var(--ink-muted);line-height:1.7;flex:1}
-.ai-box{background:var(--blue-light);border:1px solid var(--blue-border);border-top:2px solid var(--blue);border-radius:10px;padding:2.25rem;margin-top:1.25rem}
-.ai-box-label{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:.65rem}
-.ai-box h3{font-family:var(--serif);font-size:1.4rem;color:var(--ink);margin-bottom:.7rem}
-.ai-box p{font-size:.9rem;color:var(--ink-muted);line-height:1.82}
+.proj-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;color:var(--forest);background:var(--forest-light);border:1px solid var(--forest-border);padding:.2rem .65rem;border-radius:3px}
+.proj-arrow{color:var(--ink-faint);font-size:.9rem;transition:all .2s}
+.proj-card:hover .proj-arrow{color:var(--forest);transform:translate(2px,-2px)}
+.proj-card h3{font-size:.97rem;font-weight:600;color:var(--ink);letter-spacing:-.01em}
+.proj-card p{font-size:.84rem;color:var(--ink-muted);line-height:1.72;flex:1}
+.ai-box{background:var(--forest);border-radius:8px;padding:2.5rem;margin-top:1.25rem}
+.ai-box-label{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,0.45);margin-bottom:.65rem}
+.ai-box h3{font-family:var(--serif);font-size:1.5rem;color:var(--white);margin-bottom:.75rem;font-weight:400}
+.ai-box p{font-size:.91rem;color:rgba(255,255,255,0.65);line-height:1.85}
 
-/* ── IMPACT ── */
-.s2s-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:2.5rem;margin-bottom:2.25rem;display:grid;grid-template-columns:160px 1fr;gap:3rem;align-items:start}
-.s2s-stats{display:flex;flex-direction:column;gap:2rem}
-.stat-num{font-family:var(--serif);font-size:3.2rem;color:var(--blue);line-height:1;letter-spacing:-.02em}
-.stat-lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:.25rem}
-.s2s-text h3{font-family:var(--serif);font-size:1.55rem;color:var(--ink);margin-bottom:.9rem}
-.s2s-text p{font-size:.9rem;color:var(--ink-muted);line-height:1.85;margin-bottom:.65rem}
+/* IMPACT */
+.s2s-layout{display:grid;grid-template-columns:200px 1fr;gap:4rem;background:var(--white);border:1px solid var(--border);border-radius:8px;padding:3rem;margin-bottom:2.5rem;align-items:start}
+@media(max-width:640px){.s2s-layout{grid-template-columns:1fr;gap:2rem;padding:2rem}}
+.s2s-stats{display:flex;flex-direction:column;gap:2.25rem}
+.stat-num{font-family:var(--serif);font-size:3.5rem;color:var(--forest);line-height:1;font-weight:300}
+.stat-lbl{font-family:var(--mono);font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:.25rem}
+.s2s-text h3{font-family:var(--serif);font-size:1.6rem;color:var(--ink);margin-bottom:1rem;font-weight:400}
+.s2s-text p{font-size:.91rem;color:var(--ink-muted);line-height:1.9;margin-bottom:.75rem}
 .s2s-text strong{color:var(--ink);font-weight:600}
 
 /* GALLERY */
-.gallery-label{font-family:var(--mono);font-size:.63rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.9rem}
-.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:3.5rem}
-.photo-tile{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;background:var(--bg);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;transition:all .2s}
-.photo-tile:hover{border-color:var(--blue-border);background:var(--blue-light)}
-.photo-tile svg{color:var(--ink-faint);opacity:.5}
+.gallery-lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.9rem}
+.photo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:4rem}
+@media(max-width:640px){.photo-grid{grid-template-columns:repeat(2,1fr)}}
+.photo-tile{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;background:var(--stone);border:1px solid var(--border);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;transition:all .2s}
+.photo-tile:hover{border-color:var(--forest-border);background:var(--forest-light)}
+.photo-tile svg{color:var(--ink-faint);opacity:.45}
 .photo-tile span{font-size:.72rem;color:var(--ink-faint);text-align:center;padding:0 .5rem;font-weight:500}
-.photo-tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.tile-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.55));opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:.75rem}
+.photo-tile img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;transition:transform .4s}
+.photo-tile:hover img{transform:scale(1.05)}
+.tile-overlay{position:absolute;inset:0;background:linear-gradient(transparent 40%,rgba(0,0,0,.5));opacity:0;transition:opacity .3s;display:flex;align-items:flex-end;padding:.75rem}
 .photo-tile:hover .tile-overlay{opacity:1}
-.tile-lbl{color:#fff;font-size:.72rem;font-weight:500}
+.tile-lbl{color:#fff;font-size:.73rem;font-weight:500}
 
-/* VOL GRID */
-.vol-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.vol-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.6rem;transition:border-color .2s,box-shadow .2s}
-.vol-card:hover{border-color:var(--blue-border);box-shadow:0 4px 16px rgba(30,58,95,0.07)}
-.vol-icon{font-size:1.5rem;margin-bottom:.7rem}
-.vol-card h3{font-size:.94rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
-.vol-card p{font-size:.84rem;color:var(--ink-muted);line-height:1.72;margin-bottom:1rem}
-.view-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.68rem;letter-spacing:.06em;color:var(--blue-mid);background:none;border:none;padding:0;cursor:pointer;transition:gap .2s;text-transform:uppercase}
-.view-btn:hover{gap:.7rem;color:var(--blue)}
+/* VOL */
+.vol-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:640px){.vol-grid{grid-template-columns:1fr}}
+.vol-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:1.75rem;transition:border-color .2s,box-shadow .2s}
+.vol-card:hover{border-color:var(--forest-border);box-shadow:0 4px 16px rgba(27,58,45,0.07)}
+.vol-icon{font-size:1.5rem;margin-bottom:.75rem}
+.vol-card h3{font-size:.95rem;font-weight:600;color:var(--ink);margin-bottom:.4rem}
+.vol-card p{font-size:.85rem;color:var(--ink-muted);line-height:1.75;margin-bottom:1.1rem}
+.view-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--forest);background:none;border:none;padding:0;cursor:pointer;transition:gap .2s}
+.view-btn:hover{gap:.7rem}
 
-/* ── SKILLS ── */
-.skill-group{margin-bottom:2.5rem}
-.sg-label{font-family:var(--mono);font-size:.63rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.85rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+/* SKILLS */
+.skill-group{margin-bottom:2.75rem}
+.sg-lbl{font-family:var(--mono);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:.85rem;padding-bottom:.55rem;border-bottom:1px solid var(--border)}
 .skill-row{display:flex;flex-wrap:wrap;gap:.45rem}
-.pill{font-size:.78rem;font-weight:500;padding:.3rem .9rem;border-radius:5px;border:1px solid var(--border);color:var(--ink-muted);background:var(--white);transition:border-color .2s}
-.pill:hover{border-color:var(--blue-border)}
-.pill.blue{background:var(--blue-light);border-color:var(--blue-border);color:var(--blue-mid)}
-.pill.green{background:#F0FDF4;border-color:#86EFAC;color:#15803D}
-
-/* LANGUAGES */
-.lang-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:3rem}
-.lpill{font-family:var(--mono);font-size:.74rem;padding:.38rem 1rem;border-radius:5px;border:1px solid var(--border);color:var(--ink-muted);background:var(--white);letter-spacing:.02em}
-.lpill.clickable{border-color:var(--accent-border);color:var(--accent);background:var(--accent-light);cursor:pointer;transition:all .2s}
-.lpill.clickable:hover{background:#FAE8D0}
-
-/* INTERESTS */
-.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.int-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1.4rem;display:flex;gap:1rem;align-items:flex-start}
+.pill{font-size:.79rem;padding:.33rem .9rem;border-radius:4px;border:1px solid var(--border);color:var(--ink-muted);background:var(--stone);transition:border-color .2s}
+.pill:hover{border-color:var(--forest-border)}
+.pill.forest{background:var(--forest-light);border-color:var(--forest-border);color:var(--forest)}
+.pill.warm{background:var(--gold-light);border-color:var(--gold-border);color:var(--gold)}
+.lang-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:3.5rem}
+.lpill{font-family:var(--mono);font-size:.74rem;padding:.38rem 1.05rem;border-radius:4px;border:1px solid var(--border);color:var(--ink-muted);background:var(--stone);letter-spacing:.02em}
+.lpill.click{border-color:var(--gold-border);color:var(--gold);background:var(--gold-light);cursor:pointer;transition:all .2s}
+.lpill.click:hover{background:#F0E4C0}
+.int-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+@media(max-width:640px){.int-grid{grid-template-columns:1fr}}
+.int-card{background:var(--stone);border:1px solid var(--border);border-radius:8px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
 .int-icon{font-size:1.5rem;flex-shrink:0}
 .int-card h4{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
-.int-card p{font-size:.82rem;color:var(--ink-muted);line-height:1.65}
+.int-card p{font-size:.83rem;color:var(--ink-muted);line-height:1.68}
 
-/* ── CONTACT ── */
-.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:2rem}
-.c-card{display:flex;align-items:center;gap:1rem;padding:1.3rem 1.5rem;background:var(--white);border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--ink);transition:all .2s}
-.c-card:hover{border-color:var(--blue-border);box-shadow:0 4px 16px rgba(30,58,95,0.08)}
-.c-icon{width:40px;height:40px;border-radius:8px;background:var(--blue-light);border:1px solid var(--blue-border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.c-card h4{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.1rem}
-.c-card p{font-size:.77rem;color:var(--ink-muted)}
+/* CONTACT */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+@media(max-width:768px){.contact-layout{grid-template-columns:1fr;gap:3rem}}
+.contact-left .s-eye{color:rgba(255,255,255,0.45)}
+.contact-left .s-eye::before{background:rgba(255,255,255,0.35)}
+.contact-left .s-h{color:var(--white)}
+.contact-left .s-h em{color:rgba(255,255,255,0.55)}
+.contact-left .s-p{color:rgba(255,255,255,0.55);margin-bottom:0}
+.c-links{display:flex;flex-direction:column;gap:.75rem}
+.c-card{display:flex;align-items:center;gap:1rem;padding:1.25rem 1.5rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;text-decoration:none;color:var(--white);transition:all .2s}
+.c-card:hover{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2)}
+.c-icon{width:38px;height:38px;border-radius:7px;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.c-card h4{font-size:.9rem;font-weight:600;color:var(--white);margin-bottom:.1rem}
+.c-card p{font-size:.77rem;color:rgba(255,255,255,0.5)}
 
-/* ── FOOTER ── */
-footer{padding:2rem 4.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--white)}
-footer p{font-family:var(--mono);font-size:.65rem;color:var(--ink-faint);letter-spacing:.07em}
-footer a{color:var(--ink-faint);text-decoration:none}
-footer a:hover{color:var(--blue)}
+/* FOOTER */
+footer{background:var(--forest-mid);padding:2rem 4rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08)}
+@media(max-width:640px){footer{padding:1.75rem 1.5rem;flex-direction:column;gap:.5rem;text-align:center}}
+footer p{font-family:var(--mono);font-size:.62rem;color:rgba(255,255,255,0.3);letter-spacing:.07em}
+footer a{color:rgba(255,255,255,0.3);text-decoration:none}
+footer a:hover{color:rgba(255,255,255,0.6)}
 
-/* ── MODAL ── */
-.modal-backdrop{display:none;position:fixed;inset:0;z-index:999;background:rgba(13,17,23,.75);backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:1.5rem}
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;z-index:999;background:rgba(10,20,15,0.82);backdrop-filter:blur(10px);align-items:center;justify-content:center;padding:1.5rem}
 .modal-backdrop.open{display:flex}
-.modal{background:var(--white);border:1px solid var(--border);border-radius:12px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,.2)}
-.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:7px;background:var(--bg);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--ink-muted);transition:all .2s;font-family:inherit}
-.modal-close:hover{border-color:var(--blue-border);color:var(--blue)}
+.modal{background:var(--white);border:1px solid var(--border);border-radius:10px;max-width:640px;width:100%;max-height:90vh;overflow-y:auto;position:relative;box-shadow:0 40px 80px rgba(0,0,0,.25)}
+.modal-close{position:absolute;top:1rem;right:1rem;width:36px;height:36px;border-radius:6px;background:var(--stone);border:1px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--ink-muted);transition:all .2s;font-family:inherit}
+.modal-close:hover{border-color:var(--forest-border);color:var(--forest)}
 .modal-header{padding:2.25rem 2.25rem 1.25rem}
-.modal-eye{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--blue-mid);margin-bottom:.6rem}
-.modal-header h2{font-family:var(--serif);font-size:1.55rem;color:var(--ink);margin-bottom:.6rem}
-.modal-header p{font-size:.88rem;color:var(--ink-muted);line-height:1.75}
+.modal-eye{font-family:var(--mono);font-size:.6rem;letter-spacing:.17em;text-transform:uppercase;color:var(--forest);margin-bottom:.6rem}
+.modal-header h2{font-family:var(--serif);font-size:1.6rem;color:var(--ink);margin-bottom:.6rem;font-weight:400}
+.modal-header p{font-size:.89rem;color:var(--ink-muted);line-height:1.78}
 .modal-imgs{padding:0 2.25rem 1.25rem;display:flex;flex-direction:column;gap:1rem}
-.modal-img-real img{width:100%;display:block;border-radius:8px;border:1px solid var(--border)}
-.modal-img-cap{font-family:var(--mono);font-size:.65rem;color:var(--ink-faint);margin-top:.4rem;letter-spacing:.04em}
-.modal-placeholder{background:var(--bg);border:1px dashed var(--border-s);border-radius:8px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--ink-faint);font-size:.8rem;text-align:center;padding:2rem}
-.modal-note{margin:0 2.25rem 1.5rem;background:var(--accent-light);border:1px solid var(--accent-border);border-radius:8px;padding:1rem 1.25rem;font-family:var(--mono);font-size:.73rem;color:#8B5E2A;line-height:1.7}
+.modal-img-real img{width:100%;display:block;border-radius:6px;border:1px solid var(--border)}
+.modal-img-cap{font-family:var(--mono);font-size:.62rem;color:var(--ink-faint);margin-top:.4rem;letter-spacing:.04em}
+.modal-placeholder{background:var(--stone);border:1px dashed var(--border-s);border-radius:6px;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;color:var(--ink-faint);font-size:.8rem;text-align:center;padding:2rem}
+.modal-note{margin:0 2.25rem 1.5rem;background:var(--gold-light);border:1px solid var(--gold-border);border-radius:6px;padding:1rem 1.25rem;font-family:var(--mono);font-size:.72rem;color:#7A5A0A;line-height:1.72}
 .modal-note strong{font-weight:600}
-.modal-note code{background:rgba(200,147,74,0.12);border-radius:3px;padding:.1rem .35rem}
+.modal-note code{background:rgba(139,105,20,.1);border-radius:3px;padding:.1rem .35rem}
 .modal-link{padding:0 2.25rem 2.25rem}
-.modal-link a{font-family:var(--mono);font-size:.73rem;color:var(--blue-mid);text-decoration:none;letter-spacing:.04em}
+.modal-link a{font-family:var(--mono);font-size:.72rem;color:var(--forest);text-decoration:none;letter-spacing:.04em}
 .modal-link a:hover{text-decoration:underline}
-
-/* scrollbar */
 ::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-track{background:var(--stone)}
 ::-webkit-scrollbar-thumb{background:var(--border-s);border-radius:3px}
-
-/* RESPONSIVE */
-@media(max-width:900px){
-  .sidebar{display:none}
-  .main{margin-left:0}
-  .section,.hero-section{padding:4rem 1.75rem}
-  .s2s-card{grid-template-columns:1fr;gap:1.5rem}
-  .proj-grid,.vol-grid,.about-grid,.contact-grid,.int-grid{grid-template-columns:1fr}
-  .photo-grid{grid-template-columns:repeat(2,1fr)}
-  footer{padding:1.75rem;flex-direction:column;gap:.5rem;text-align:center}
-}
 </style>
 </head>
 <body>
-<div class="layout">
 
-<!-- ── SIDEBAR ── -->
-<aside class="sidebar">
-  <div class="s-brand">
-    <div class="s-name">Anagha <em>Athreyas</em></div>
-    <div class="s-role">Finance &amp; Accounting</div>
-  </div>
-
-  <div class="s-status">Available for roles</div>
-
-  <nav class="s-nav">
-    <a href="#hero" class="active">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      Home
-    </a>
-    <a href="#about">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-      About
-    </a>
-    <a href="#experience">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
-      Experience
-    </a>
-    <a href="#projects">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      Projects
-    </a>
-    <a href="#impact">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      Impact
-    </a>
-    <a href="#skills">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
-      Skills
-    </a>
-    <a href="#contact">
-      <svg class="nav-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-      Contact
-    </a>
-  </nav>
-
-  <div class="s-socials">
-    <a href="https://www.linkedin.com/in/anagha-a-450859211" target="_blank" class="s-social" title="LinkedIn">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-    </a>
-    <a href="https://github.com/AnaghaAthreyas" target="_blank" class="s-social" title="GitHub">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-    </a>
-    <a href="mailto:athreyas.a@northeastern.edu" class="s-social" title="Email">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-    </a>
-  </div>
-</aside>
-
-<!-- ── MAIN ── -->
-<main class="main">
+<nav class="topnav" id="topnav">
+  <a href="#" class="nav-logo">Anagha Athreyas</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#impact">Impact</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
 
 <!-- HERO -->
-<div class="hero-section" id="hero">
-  <p class="hero-kicker">Finance · Accounting · Social Impact</p>
-  <h1 class="hero-h">Anagha <em>Athreyas</em></h1>
-  <p class="hero-p">I build things — financial models, automated systems, and grassroots initiatives. MS Finance at Northeastern, CPA in progress, Goldman Sachs alum. I believe the best finance professionals never stop asking why.</p>
-  <div class="hero-tags">
-    <span class="htag">FP&amp;A</span>
-    <span class="htag">Tax Accounting</span>
-    <span class="htag">Fund Accounting</span>
-    <span class="htag">Corporate Finance</span>
-    <span class="htag">Financial Analysis</span>
-    <span class="htag">AI in Finance</span>
-    <span class="htag">Equity Research</span>
-    <span class="htag">Accounting</span>
+<div class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-kicker">Finance · Accounting · Social Impact</p>
+    <h1 class="hero-name">
+      <span>Anagha</span>
+      <span class="last">Athreyas</span>
+    </h1>
+    <p class="hero-tagline">MS Finance candidate at Northeastern University. CPA in progress. Three years of professional experience across financial services and technology. Committed to work that is rigorous, purposeful, and built to last.</p>
+    <div class="hero-tags">
+      <span class="htag">FP&amp;A</span>
+      <span class="htag">Tax Accounting</span>
+      <span class="htag">Fund Accounting</span>
+      <span class="htag">Corporate Finance</span>
+      <span class="htag">Financial Analysis</span>
+      <span class="htag">Equity Research</span>
+      <span class="htag">Accounting</span>
+    </div>
+    <div class="hero-btns">
+      <a href="#about" class="btn-white">Learn More</a>
+      <a href="#contact" class="btn-ghost-w">Get in Touch</a>
+    </div>
   </div>
-  <div class="hero-cta">
-    <a href="#impact" class="btn-primary">My Story ↓</a>
-    <a href="#contact" class="btn-outline">Get in Touch</a>
-  </div>
+  <div class="hero-scroll"><div class="scroll-dot"></div><span>Scroll</span></div>
+</div>
+
+<!-- STRIP -->
+<div class="intro-strip">
+  <div class="strip-stat"><div class="strip-num">3+</div><div class="strip-lbl">Years of experience</div></div>
+  <div class="strip-div"></div>
+  <div class="strip-stat"><div class="strip-num">CPA</div><div class="strip-lbl">Candidate</div></div>
+  <div class="strip-div"></div>
+  <div class="strip-stat"><div class="strip-num">MS</div><div class="strip-lbl">Finance, Northeastern</div></div>
+  <div class="strip-div"></div>
+  <div class="strip-stat"><div class="strip-num">80+</div><div class="strip-lbl">Lives supported through NGO</div></div>
+  <div class="strip-div"></div>
+  <div class="strip-stat"><div class="strip-num">5</div><div class="strip-lbl">Languages</div></div>
 </div>
 
 <!-- ABOUT -->
-<section class="section" id="about">
+<div id="about">
+<div class="section">
   <p class="s-eye">Background</p>
-  <h2 class="s-h">From Bangalore<br>to <em>Boston</em></h2>
-  <p class="s-p">I grew up asking questions — about numbers, about people, about why things work the way they do. That curiosity took me from a B.Com in Accounting and Finance at Mount Carmel College, Bangalore, India, to a Master's in Finance at Northeastern University, graduating August 2026. Along the way, I worked at Goldman Sachs, built a food redistribution NGO, and taught English to children over the phone in rural India.</p>
-  <div class="about-grid">
+  <h2 class="s-h">A foundation in<br><em>finance and purpose</em></h2>
+  <p class="s-p">I hold a Bachelor of Commerce in Accounting and Finance from Mount Carmel College, Bangalore, India, and am completing a Master of Science in Finance at Northeastern University's D'Amore-McKim School of Business, graduating August 2026. I am also actively pursuing CPA certification. My professional experience spans tax operations, financial planning and analysis, and equity research. Outside of work, I have spent considerable time building and supporting initiatives in education and community welfare.</p>
+  <div class="about-layout">
     <div class="a-card">
-      <div class="a-card-top"><div class="a-card-icon">🎓</div><h3>Education</h3></div>
-      <p>MS Finance, Northeastern University (2026)<br>B.Com Accounting &amp; Finance,<br>Mount Carmel College, Bangalore, India</p>
+      <div class="a-card-top"><div class="a-icon">🎓</div><h3>Education</h3></div>
+      <p>MS Finance, Northeastern University (2026)<br>B.Com Accounting &amp; Finance, Mount Carmel College, Bangalore, India</p>
     </div>
     <div class="a-card">
-      <div class="a-card-top"><div class="a-card-icon">📜</div><h3>CPA Journey</h3></div>
-      <p>Actively pursuing CPA certification — deepening expertise across financial accounting, auditing, regulation, and tax.</p>
+      <div class="a-card-top"><div class="a-icon">📜</div><h3>CPA Certification</h3></div>
+      <p>Actively pursuing CPA certification, with focus areas across financial accounting, auditing, tax regulation, and business environment.</p>
     </div>
     <div class="a-card">
-      <div class="a-card-top"><div class="a-card-icon">🏢</div><h3>Experience</h3></div>
+      <div class="a-card-top"><div class="a-icon">🏢</div><h3>Professional Experience</h3></div>
       <p>Tax Operations · Goldman Sachs<br>FP&amp;A · Mitel Communications<br>Equity Research · 360 Huntington Fund</p>
     </div>
     <div class="a-card">
-      <div class="a-card-top"><div class="a-card-icon">✈️</div><h3>Availability</h3></div>
-      <p>Open to roles across the United States. Ready to relocate wherever the right opportunity is.</p>
+      <div class="a-card-top"><div class="a-icon">✈️</div><h3>Location &amp; Availability</h3></div>
+      <p>Currently based in Boston. Open to roles across the United States and available to relocate for the right opportunity.</p>
     </div>
   </div>
-</section>
+</div>
+</div>
+
+<hr class="divider-line"/>
 
 <!-- EXPERIENCE -->
-<section class="section" id="experience">
+<div class="exp-bg" id="experience">
+<div class="exp-inner">
   <p class="s-eye">Career</p>
-  <h2 class="s-h">The work that<br><em>shaped me</em></h2>
-  <p class="s-p">Every role taught me something different — about scale, precision, and what it means to make financial information actually useful.</p>
+  <h2 class="s-h">Professional<br><em>experience</em></h2>
+  <p class="s-p">Each role has added a distinct dimension to how I approach financial work, from the precision of tax compliance in financial services to the strategic framing of FP&amp;A in a technology environment.</p>
   <div class="timeline">
     <div class="t-item">
       <p class="t-meta">2024 – PRESENT · BOSTON, MA</p>
       <p class="t-role">Equity Research Analyst</p>
       <p class="t-org">360 Huntington Fund · Northeastern University</p>
-      <p class="t-desc">A student-managed fund investing real capital. I build financial models, conduct sector research, and present buy/sell recommendations to a committee that actually moves the portfolio. The stakes are real — and so is the learning.</p>
+      <p class="t-desc">A student-managed investment fund operating with real capital. Responsibilities include building financial models, conducting fundamental equity research, and presenting investment recommendations to a portfolio committee. The experience reinforces disciplined analysis and clear communication under conditions where decisions carry actual consequences.</p>
     </div>
     <div class="t-item">
       <p class="t-meta">2022 – 2023 · BANGALORE, INDIA</p>
       <p class="t-role">Senior Analyst, Tax Operations</p>
       <p class="t-org">Goldman Sachs</p>
-      <p class="t-desc">High-volume, high-accuracy tax reporting for one of the world's largest investment banks. Every decimal mattered. But what I'm most proud of isn't a number — it's a system I built.</p>
+      <p class="t-desc">Supported high-volume, high-accuracy tax reporting for a global investment banking institution. The work demanded precision across complex financial instruments and institutional client structures. Beyond day-to-day operations, I identified an opportunity to improve how the team worked.</p>
       <div class="t-story">
-        <strong>The automation story —</strong> Our team was spending hours each week manually reconciling tax data across spreadsheets — copy, paste, check, repeat. I mapped the entire workflow, identified the bottlenecks, and built a process automation that cut that reconciliation time dramatically. It wasn't asked of me. I just couldn't watch a fixable problem go unfixed. That instinct — to look at a process and ask "does this have to work this way?" — is something I carry into every role.
+        <strong>Process improvement at Goldman Sachs:</strong> A significant portion of each week was consumed by manual reconciliation of tax data across multiple spreadsheets. The process was repetitive, time-consuming, and introduced unnecessary risk of error. I documented the full workflow, identified the inefficiencies, and designed an automated solution that substantially reduced the time required for reconciliation. The initiative was self-directed. I have carried that same orientation toward process improvement into every role since.
       </div>
     </div>
     <div class="t-item">
       <p class="t-meta">2021 – 2022 · BANGALORE, INDIA</p>
       <p class="t-role">Associate Financial Analyst, FP&amp;A</p>
       <p class="t-org">Mitel Communications</p>
-      <p class="t-desc">My first real taste of FP&amp;A at a global tech company. Built forecasting models, ran variance analyses, and put together reporting packages for leadership. I learned how financial storytelling — not just the numbers but the narrative — is what actually drives decisions.</p>
+      <p class="t-desc">Contributed to financial planning and analysis at a global communications technology company. Built forecasting models, conducted variance analyses, and prepared reporting packages for senior leadership. Developed an early appreciation for how financial narrative, not just financial data, shapes organisational decision-making.</p>
     </div>
   </div>
-</section>
+</div>
+</div>
+
+<hr class="divider-line"/>
 
 <!-- PROJECTS -->
-<section class="section" id="projects">
+<div id="projects">
+<div class="section">
   <p class="s-eye">Projects</p>
-  <h2 class="s-h">Finance<br><em>meets code</em></h2>
-  <p class="s-p">I don't just analyze — I build. Each project started with a real problem and ended with something that actually runs.</p>
+  <h2 class="s-h">Selected<br><em>work</em></h2>
+  <p class="s-p">A selection of financial modelling and analytical projects, each grounded in a real problem and developed to a working standard.</p>
   <div class="proj-grid">
     <a href="https://github.com/AnaghaAthreyas/pnl-attribution" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Python</span><span class="proj-arrow">↗</span></div>
       <h3>P&amp;L Attribution Engine</h3>
-      <p>Automated monthly fund P&amp;L attribution — breaks down performance by security, sector, and geography vs. budget and prior month.</p>
+      <p>Automated monthly fund P&amp;L attribution, disaggregating performance by security, sector, and geography against budget and prior-month benchmarks.</p>
     </a>
     <a href="https://github.com/AnaghaAthreyas/NAV_Tracker" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Python</span><span class="proj-arrow">↗</span></div>
       <h3>NAV Tracker</h3>
-      <p>Portfolio Net Asset Value tracker using yfinance and openpyxl — replaces a manual, error-prone process with automated daily updates.</p>
+      <p>Portfolio net asset value tracker built in Python using yfinance and openpyxl, replacing a manual reconciliation process with automated daily output.</p>
     </a>
     <a href="https://github.com/AnaghaAthreyas/retail-store-expansion-proforma" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Excel</span><span class="proj-arrow">↗</span></div>
       <h3>Retail Expansion Pro-Forma</h3>
-      <p>Financial model for Dollar General store expansion — NPV, IRR, and sensitivity analysis supporting a real capital allocation decision.</p>
+      <p>Financial model for a retail store expansion scenario incorporating NPV, IRR, and sensitivity analysis to support capital allocation decision-making.</p>
     </a>
     <a href="https://github.com/AnaghaAthreyas/Portfolio-Management" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Finance</span><span class="proj-arrow">↗</span></div>
-      <h3>$10M Portfolio Simulation</h3>
-      <p>Managed a simulated $10M equity portfolio — achieved +2.73% outperformance through active stock selection and allocation strategy.</p>
+      <h3>Portfolio Simulation</h3>
+      <p>Managed a simulated equity portfolio, achieving 2.73% outperformance against the benchmark through active stock selection and position sizing.</p>
     </a>
     <a href="https://github.com/AnaghaAthreyas/-Factor-model-portfolio-" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Python</span><span class="proj-arrow">↗</span></div>
-      <h3>AI-Thematic Factor Portfolio</h3>
-      <p>Applied PCA-based factor analysis to 15 years of CRSP return data. Built a 30-stock AI-thematic portfolio scored on extracted factor loadings.</p>
+      <h3>Factor-Based Portfolio Construction</h3>
+      <p>Applied PCA-based factor analysis to fifteen years of CRSP return data, extracting economic factors and constructing a thematic portfolio scored on factor loadings.</p>
     </a>
     <a href="https://github.com/AnaghaAthreyas/Mutual-Fund-" target="_blank" class="proj-card">
       <div class="proj-top"><span class="proj-badge">Finance</span><span class="proj-arrow">↗</span></div>
-      <h3>Mutual Fund Analysis</h3>
-      <p>Computed Sharpe ratio and Jensen's alpha. Benchmarked against the FTSE High Dividend Yield Index to assess alpha generation for investors.</p>
+      <h3>Mutual Fund Performance Analysis</h3>
+      <p>Computed Sharpe ratio and Jensen's alpha for a mutual fund, benchmarking performance against the FTSE High Dividend Yield Index.</p>
     </a>
   </div>
   <div class="ai-box">
-    <p class="ai-box-label">Philosophy</p>
-    <h3>Always asking: does this have to be manual?</h3>
-    <p>Whether building Python tools that replace spreadsheet workflows, applying machine learning to portfolio construction, or thinking about how AI can transform financial analysis — I genuinely enjoy making processes smarter. At Goldman, I built an automation because I couldn't stop myself. That instinct hasn't gone away. The finance professionals who matter most in the next decade will be fluent in data, automation, and AI-augmented decision-making.</p>
+    <p class="ai-box-label">Approach</p>
+    <h3>On technology and process</h3>
+    <p>I take a genuine interest in applying technology to improve financial workflows. At Goldman Sachs, I developed a process automation without being asked to, because the inefficiency was evident and the solution was within reach. That same orientation informs how I approach analytical work today. Whether through Python tooling, data visualisation, or structured modelling, I look for opportunities to make processes more reliable, efficient, and useful to the people who depend on them.</p>
   </div>
-</section>
+</div>
+</div>
 
 <!-- IMPACT -->
-<section class="section" id="impact">
+<div class="impact-bg" id="impact">
+<div class="impact-inner">
   <p class="s-eye">Social Impact</p>
-  <h2 class="s-h">The work I do<br>when <em>no one's watching</em></h2>
-  <p class="s-p">Before I understood balance sheets, I understood that food, education, and opportunity aren't distributed equally. These initiatives aren't on my resume to fill space — they're the things I actually care about.</p>
+  <h2 class="s-h">Community work<br>and <em>volunteering</em></h2>
+  <p class="s-p">Alongside my professional and academic commitments, I have been involved in a range of education, welfare, and community initiatives in India. These experiences have shaped how I think about purpose and responsibility in equal measure to my professional work.</p>
 
-  <div class="s2s-card">
+  <div class="s2s-layout">
     <div class="s2s-stats">
-      <div><div class="stat-num">80+</div><div class="stat-lbl">People nourished</div></div>
-      <div><div class="stat-num">20%</div><div class="stat-lbl">Food wasted at events</div></div>
+      <div><div class="stat-num">80+</div><div class="stat-lbl">Residents supported</div></div>
+      <div><div class="stat-num">20%</div><div class="stat-lbl">Avg. food waste at events</div></div>
     </div>
     <div class="s2s-text">
-      <h3>Surplus2Smiles — I founded this</h3>
-      <p>Indian weddings are not small affairs. Hundreds of guests, multiple days, and tables of food that never stop coming. I was at one such wedding when I wandered into the kitchen and asked the chef a simple question: what happens to the leftovers?</p>
-      <p>His answer stayed with me. <strong>At least 20% of all food prepared goes to waste</strong> — not because no one wants it, but because no system exists to move it where it's needed. So I built one.</p>
-      <p>Surplus2Smiles connects event organizers to a shelter home housing over 80 residents of all ages and abilities. I visited the home, verified storage capacity, and created a channel that keeps running. Surplus becomes sustenance.</p>
+      <h3>Surplus2Smiles</h3>
+      <p>Large social gatherings in India routinely generate significant food surplus. At an event I attended, I spoke with the catering team and learned that on average, <strong>20 percent of all food prepared goes to waste</strong> due to the perishable nature of cooked food and the absence of any redistribution infrastructure.</p>
+      <p>In response, I established Surplus2Smiles, an initiative to connect event organisers with a local shelter home housing over 80 residents across age groups and abilities. Prior to formalising any partnership, I visited the facility to assess storage capacity and operational readiness. The channel has since run consistently, redirecting food that would otherwise go to waste to people who benefit from it.</p>
     </div>
   </div>
 
-  <p class="gallery-label">Surplus2Smiles — gallery</p>
+  <p class="gallery-lbl">Surplus2Smiles</p>
   <div class="photo-grid">
     <div class="photo-tile" onclick="openModal('s2s-reg')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>NGO Registration</span>
+      <span>Registration</span>
     </div>
     <div class="photo-tile" onclick="openModal('s2s-food1')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
@@ -442,69 +416,71 @@ footer a:hover{color:var(--blue)}
     </div>
     <div class="photo-tile" onclick="openModal('s2s-shelter')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Shelter Home</span>
+      <span>Shelter Home Visit</span>
     </div>
     <div class="photo-tile" onclick="openModal('s2s-food2')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>The Kitchen</span>
+      <span>On the Ground</span>
     </div>
     <div class="photo-tile" onclick="openModal('s2s-food3')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Impact</span>
+      <span>Community Impact</span>
     </div>
     <div class="photo-tile" onclick="openModal('s2s-team')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Behind the Scenes</span>
+      <span>Operations</span>
     </div>
   </div>
 
-  <p class="s-eye" style="margin-bottom:.8rem">Volunteering</p>
-  <h3 style="font-family:var(--serif);font-size:1.75rem;color:var(--ink);margin-bottom:.75rem;letter-spacing:-.01em">Other work I'm proud of</h3>
-  <p style="font-size:.92rem;color:var(--ink-muted);max-width:560px;line-height:1.85;margin-bottom:2rem">From teaching English over the phone to rural children, to helping young women in Bangalore get scholarships.</p>
+  <p class="s-eye" style="margin-bottom:.9rem">Volunteering</p>
+  <h3 style="font-family:var(--serif);font-size:1.9rem;color:var(--ink);margin-bottom:.75rem;font-weight:400">Additional initiatives</h3>
+  <p style="font-size:.93rem;color:var(--ink-muted);max-width:580px;line-height:1.88;margin-bottom:2.25rem">The following represent a range of volunteering engagements across education, infrastructure, and welfare — each undertaken independently of any professional or academic obligation.</p>
   <div class="vol-grid">
     <div class="vol-card">
       <div class="vol-icon">📚</div>
-      <h3>U&amp;I — Teaching English &amp; GK</h3>
-      <p>Volunteered with U&amp;I in Bangalore, teaching English and general knowledge to underprivileged children. Showing up every week, watching kids grow more confident.</p>
+      <h3>U&amp;I — English and General Knowledge</h3>
+      <p>Volunteered with U&amp;I, a Bangalore-based education organisation, teaching English and general knowledge to children from underserved communities on a regular weekly basis.</p>
       <button class="view-btn" onclick="openModal('uni-cert')">View certificate <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="vol-card">
       <div class="vol-icon">📞</div>
       <h3>Dial to Teach — AID India</h3>
-      <p>Taught English over the phone to children of manual scavenging families in rural India. No classroom, no whiteboard — just a call and the belief that every child deserves opportunity.</p>
-      <button class="view-btn" onclick="openModal('dial-proof')">View letter &amp; more <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <p>Participated in Dial to Teach, an AID India initiative providing telephone-based English language instruction to children from manual scavenging families in rural India. Documentation includes a letter from the programme founder and a listing on the official website.</p>
+      <button class="view-btn" onclick="openModal('dial-proof')">View documentation <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="vol-card">
       <div class="vol-icon">🚿</div>
-      <h3>Washroom Fund — Rural Andhra Pradesh</h3>
-      <p>Helped raise funds to construct washroom facilities at a school in rural Andhra Pradesh. Sometimes the most impactful thing is fixing something basic that everyone else overlooked.</p>
+      <h3>Sanitation Infrastructure — Rural Andhra Pradesh</h3>
+      <p>Contributed to a fundraising effort to construct washroom facilities at a rural school in Andhra Pradesh, addressing a basic infrastructure gap with a direct impact on attendance and hygiene.</p>
     </div>
     <div class="vol-card">
       <div class="vol-icon">👩‍🎓</div>
       <h3>BEEW — Head of Operations</h3>
-      <p>Verified scholarship documents, helped award grants, and counselled young women on careers — not just courses — at Bangalore Education Empowerment of Women.</p>
+      <p>Served as Head of Operations at Bangalore Education Empowerment of Women, an organisation providing scholarships to young women pursuing higher education. Responsibilities included document verification, scholarship disbursement, and career guidance.</p>
       <button class="view-btn" onclick="openModal('beew-proof')">View documentation <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
     <div class="vol-card">
       <div class="vol-icon">🎨</div>
-      <h3>Special Summer Camp</h3>
-      <p>Organized and ran sports, arts, and crafts sessions for children at a special summer camp. Watching kids just be kids — that's its own kind of reward.</p>
+      <h3>Special Needs Summer Programme</h3>
+      <p>Volunteered at a structured summer programme for children with special needs, facilitating sports activities as well as arts and crafts sessions focused on cognitive engagement and social participation.</p>
       <button class="view-btn" onclick="openModal('camp-proof')">View photos <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
     </div>
   </div>
-</section>
+</div>
+</div>
 
 <!-- SKILLS -->
-<section class="section" id="skills">
+<div class="skills-bg" id="skills">
+<div class="skills-inner">
   <p class="s-eye">Skills</p>
-  <h2 class="s-h">What I bring<br>to the <em>table</em></h2>
+  <h2 class="s-h">Areas of<br><em>expertise</em></h2>
   <div class="skill-group">
-    <p class="sg-label">Accounting &amp; Finance</p>
+    <p class="sg-lbl">Accounting &amp; Finance</p>
     <div class="skill-row">
       <span class="pill">Financial Accounting</span><span class="pill">Management Accounting</span>
       <span class="pill">Tax Accounting</span><span class="pill">FP&amp;A</span>
       <span class="pill">Fund Accounting</span><span class="pill">Equity Research</span>
-      <span class="pill">Financial Modeling</span><span class="pill">Variance Analysis</span>
+      <span class="pill">Financial Modelling</span><span class="pill">Variance Analysis</span>
       <span class="pill">Budgeting &amp; Forecasting</span><span class="pill">Corporate Finance</span>
       <span class="pill">Business Case Analysis</span><span class="pill">Fixed Income</span>
       <span class="pill">Derivatives</span><span class="pill">Treasury</span>
@@ -513,75 +489,80 @@ footer a:hover{color:var(--blue)}
     </div>
   </div>
   <div class="skill-group">
-    <p class="sg-label">CPA &amp; Compliance</p>
+    <p class="sg-lbl">Standards &amp; Compliance</p>
     <div class="skill-row">
-      <span class="pill green">US GAAP</span><span class="pill green">IFRS</span>
-      <span class="pill green">Audit Fundamentals</span><span class="pill green">Internal Controls</span>
-      <span class="pill green">Tax Compliance</span><span class="pill green">Regulatory Reporting</span>
-      <span class="pill green">SOX Awareness</span>
+      <span class="pill forest">US GAAP</span><span class="pill forest">IFRS</span>
+      <span class="pill forest">Audit Fundamentals</span><span class="pill forest">Internal Controls</span>
+      <span class="pill forest">Tax Compliance</span><span class="pill forest">Regulatory Reporting</span>
+      <span class="pill forest">SOX Awareness</span>
     </div>
   </div>
   <div class="skill-group">
-    <p class="sg-label">Technical &amp; Tools</p>
+    <p class="sg-lbl">Technical Tools</p>
     <div class="skill-row">
-      <span class="pill blue">Python</span><span class="pill blue">Excel / VBA</span>
-      <span class="pill blue">Power BI</span><span class="pill blue">Bloomberg Terminal</span>
-      <span class="pill blue">AI &amp; Process Automation</span>
+      <span class="pill warm">Python</span><span class="pill warm">Excel / VBA</span>
+      <span class="pill warm">Power BI</span><span class="pill warm">Bloomberg Terminal</span>
+      <span class="pill warm">Process Automation</span>
       <span class="pill">QuickBooks</span><span class="pill">SAP (exposure)</span>
       <span class="pill">Financial Data Analysis</span>
     </div>
   </div>
 
-  <p class="s-eye" style="margin-bottom:.8rem;margin-top:.5rem">Languages</p>
-  <p style="font-size:.92rem;color:var(--ink-muted);line-height:1.85;max-width:560px;margin-bottom:1.5rem">I love learning languages — there's something about picking up a new one that keeps the mind sharp and the world wider.</p>
+  <p class="s-eye" style="margin-top:.5rem;margin-bottom:.8rem">Languages</p>
+  <p style="font-size:.93rem;color:var(--ink-muted);line-height:1.88;max-width:560px;margin-bottom:1.5rem">I have a long-standing interest in language learning. In addition to my native languages, I have studied Korean to classroom proficiency and am currently completing the third level of a formal Spanish programme.</p>
   <div class="lang-pills">
-    <span class="lpill">English — Native</span>
+    <span class="lpill">English — Fluent</span>
     <span class="lpill">Kannada — Native</span>
-    <span class="lpill">Hindi / Tamil — Fluent</span>
-    <span class="lpill clickable" onclick="openModal('korean-cert')">Korean 한국어 — Proficient ↗</span>
-    <span class="lpill clickable" onclick="openModal('spanish-cert')">Spanish — Level 3 in progress ↗</span>
+    <span class="lpill">Hindi / Tamil — Conversational</span>
+    <span class="lpill click" onclick="openModal('korean-cert')">Korean — Classroom Proficiency ↗</span>
+    <span class="lpill click" onclick="openModal('spanish-cert')">Spanish — Level 3 in Progress ↗</span>
   </div>
 
-  <p class="s-eye" style="margin-bottom:.8rem">Interests</p>
+  <p class="s-eye" style="margin-bottom:.9rem">Personal Interests</p>
   <div class="int-grid">
-    <div class="int-card"><div class="int-icon">🥾</div><div><h4>Outdoors &amp; Hiking</h4><p>Trails, beach treks, and views that make everything else quiet. Where I do my best thinking.</p></div></div>
-    <div class="int-card"><div class="int-icon">☕</div><div><h4>Coffee &amp; Baking</h4><p>I take coffee seriously and baking experimentally. Both require getting the ratios right.</p></div></div>
-    <div class="int-card"><div class="int-icon">🌐</div><div><h4>Language Learning</h4><p>Currently in a committed relationship with Spanish Level 3. Every language is a new way of seeing the world.</p></div></div>
-    <div class="int-card"><div class="int-icon">✈️</div><div><h4>Exploring New Places</h4><p>Working through New England — Salem, Provincetown, Acadia. The world is large and I intend to see it.</p></div></div>
+    <div class="int-card"><div class="int-icon">🥾</div><div><h4>Hiking and the Outdoors</h4><p>I enjoy hiking and beach treks. Time outdoors tends to provide perspective that is difficult to find elsewhere.</p></div></div>
+    <div class="int-card"><div class="int-icon">☕</div><div><h4>Coffee and Baking</h4><p>A careful appreciation for coffee and an experimental approach to baking. Both reward attention to detail.</p></div></div>
+    <div class="int-card"><div class="int-icon">🌐</div><div><h4>Language Learning</h4><p>Currently working through the third level of a formal Spanish programme. Learning a language changes how you engage with the world.</p></div></div>
+    <div class="int-card"><div class="int-icon">✈️</div><div><h4>Travel</h4><p>I make a point of exploring new places. Within New England, I have visited Salem, Provincetown, and Acadia, among others.</p></div></div>
   </div>
-</section>
+</div>
+</div>
 
 <!-- CONTACT -->
-<section class="section" id="contact">
-  <p class="s-eye">Contact</p>
-  <h2 class="s-h">Let's <em>talk</em></h2>
-  <p class="s-p">Open to roles in accounting, corporate finance, FP&amp;A, tax, fund accounting, treasury, and financial operations across the US.</p>
-  <div class="contact-grid">
-    <a href="https://www.linkedin.com/in/anagha-a-450859211" target="_blank" class="c-card">
-      <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="var(--blue)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-      <div><h4>LinkedIn</h4><p>Connect professionally</p></div>
-    </a>
-    <a href="https://github.com/AnaghaAthreyas" target="_blank" class="c-card">
-      <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="var(--blue)"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-      <div><h4>GitHub</h4><p>See my projects</p></div>
-    </a>
-    <a href="mailto:athreyas.a@northeastern.edu" class="c-card">
-      <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-      <div><h4>Email</h4><p>athreyas.a@northeastern.edu</p></div>
-    </a>
-    <a href="https://anaghaathreyas.github.io" class="c-card">
-      <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-      <div><h4>Portfolio</h4><p>anaghaathreyas.github.io</p></div>
-    </a>
+<div class="contact-bg" id="contact">
+<div class="contact-inner">
+  <div class="contact-layout">
+    <div class="contact-left">
+      <p class="s-eye">Contact</p>
+      <h2 class="s-h">Get in<br><em>touch</em></h2>
+      <p class="s-p">I am open to roles in accounting, corporate finance, FP&amp;A, tax, fund accounting, treasury, and financial operations across the United States. I welcome enquiries from organisations where rigour and purpose are taken equally seriously.</p>
+    </div>
+    <div class="c-links">
+      <a href="https://www.linkedin.com/in/anagha-a-450859211" target="_blank" class="c-card">
+        <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
+        <div><h4>LinkedIn</h4><p>linkedin.com/in/anagha-a-450859211</p></div>
+      </a>
+      <a href="https://github.com/AnaghaAthreyas" target="_blank" class="c-card">
+        <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="rgba(255,255,255,0.7)"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
+        <div><h4>GitHub</h4><p>github.com/AnaghaAthreyas</p></div>
+      </a>
+      <a href="mailto:athreyasanagha1506@gmail.com" class="c-card">
+        <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
+        <div><h4>Email</h4><p>athreyasanagha1506@gmail.com</p></div>
+      </a>
+      <a href="https://anaghaathreyas.github.io" class="c-card">
+        <div class="c-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <div><h4>Portfolio</h4><p>anaghaathreyas.github.io</p></div>
+      </a>
+    </div>
   </div>
-</section>
+</div>
+</div>
 
 <footer>
   <p>© 2026 ANAGHA ATHREYAS</p>
   <p><a href="https://github.com/AnaghaAthreyas">github.com/AnaghaAthreyas</a></p>
 </footer>
-</main>
-</div>
 
 <!-- MODAL -->
 <div class="modal-backdrop" id="modal-backdrop" onclick="handleBackdropClick(event)">
@@ -593,18 +574,18 @@ footer a:hover{color:var(--blue)}
 
 <script>
 const MODALS={
-  's2s-reg':{eye:'Surplus2Smiles',title:'NGO Registration',desc:'Official registration documentation for Surplus2Smiles.',imgs:[{src:'images/s2s-registration.jpg',cap:'Registration document'}],note:'Upload as <code>images/s2s-registration.jpg</code>'},
-  's2s-food1':{eye:'Surplus2Smiles',title:'Food Distribution',desc:'Surplus meals redirected from gatherings to the shelter home.',imgs:[{src:'images/s2s-food1.jpg',cap:'Distribution — event 1'},{src:'images/s2s-food2.jpg',cap:'Distribution — event 2'}],note:'Upload as <code>images/s2s-food1.jpg</code> and <code>images/s2s-food2.jpg</code>'},
-  's2s-shelter':{eye:'Surplus2Smiles',title:'At the Shelter Home',desc:'Site visit and delivery at the shelter home housing 80+ residents.',imgs:[{src:'images/s2s-shelter.jpg',cap:'Shelter home visit'}],note:'Upload as <code>images/s2s-shelter.jpg</code>'},
-  's2s-food2':{eye:'Surplus2Smiles',title:'The Kitchen',desc:'Coordinating with chefs and catering teams to redirect surplus food.',imgs:[{src:'images/s2s-kitchen.jpg',cap:'With the chef'}],note:'Upload as <code>images/s2s-kitchen.jpg</code>'},
-  's2s-food3':{eye:'Surplus2Smiles',title:'Impact',desc:'Meals reaching the people who need them.',imgs:[{src:'images/s2s-impact.jpg',cap:'Impact at the shelter home'}],note:'Upload as <code>images/s2s-impact.jpg</code>'},
-  's2s-team':{eye:'Surplus2Smiles',title:'Behind the Scenes',desc:'The people and coordination behind Surplus2Smiles.',imgs:[{src:'images/s2s-team.jpg',cap:'Behind the scenes'}],note:'Upload as <code>images/s2s-team.jpg</code>'},
-  'uni-cert':{eye:'U&I · Bangalore',title:'Volunteer Certificate',desc:'Certificate from U&I confirming volunteering as an English and GK teacher.',imgs:[{src:'images/uni-certificate.jpg',cap:'U&I volunteer certificate'}],note:'Upload as <code>images/uni-certificate.jpg</code>'},
-  'dial-proof':{eye:'Dial to Teach · AID India',title:'Letter of Recommendation + More',desc:'Phone-based English education for children of manual scavenging families. Includes an LOR from the founder and a website feature.',imgs:[{src:'images/dial-lor.jpg',cap:'Letter of Recommendation'},{src:'images/dial-website.jpg',cap:'Featured on the Dial to Teach website'}],note:'Upload LOR as <code>images/dial-lor.jpg</code> and screenshot as <code>images/dial-website.jpg</code>',link:{label:'Visit Dial to Teach ↗',url:'https://www.aidchicago.org/'}},
-  'beew-proof':{eye:'BEEW',title:'Head of Operations — Documentation',desc:'Documentation from Bangalore Education Empowerment of Women.',imgs:[{src:'images/beew-cert.jpg',cap:'BEEW documentation'}],note:'Upload as <code>images/beew-cert.jpg</code>'},
-  'camp-proof':{eye:'Summer Camp',title:'Sports, Arts & Crafts',desc:'Photos from the special summer camp sessions.',imgs:[{src:'images/camp-sports.jpg',cap:'Sports camp'},{src:'images/camp-arts.jpg',cap:'Arts & crafts'}],note:'Upload as <code>images/camp-sports.jpg</code> and <code>images/camp-arts.jpg</code>'},
-  'korean-cert':{eye:'Korean 한국어',title:'Language Certificate',desc:'Korean proficiency — reads, writes, and understands to classroom level.',imgs:[{src:'images/korean-cert.jpg',cap:'Korean language certificate'}],note:'Upload as <code>images/korean-cert.jpg</code>'},
-  'spanish-cert':{eye:'Spanish',title:'Level 1 & 2 Certificates',desc:'Completed Levels 1 and 2. Currently in Level 3.',imgs:[{src:'images/spanish-level1.jpg',cap:'Spanish Level 1'},{src:'images/spanish-level2.jpg',cap:'Spanish Level 2'}],note:'Upload as <code>images/spanish-level1.jpg</code> and <code>images/spanish-level2.jpg</code>'}
+  's2s-reg':{eye:'Surplus2Smiles',title:'Registration',desc:'Official registration documentation for Surplus2Smiles.',imgs:[{src:'images/s2s-registration.jpg',cap:'Registration document'}],note:'Upload as <code>images/s2s-registration.jpg</code>'},
+  's2s-food1':{eye:'Surplus2Smiles',title:'Food Distribution',desc:'Surplus food redistributed from events to the shelter home.',imgs:[{src:'images/s2s-food1.jpg',cap:'Distribution event 1'},{src:'images/s2s-food2.jpg',cap:'Distribution event 2'}],note:'Upload as <code>images/s2s-food1.jpg</code> and <code>images/s2s-food2.jpg</code>'},
+  's2s-shelter':{eye:'Surplus2Smiles',title:'Shelter Home Visit',desc:'Site visit and assessment of the partner shelter home.',imgs:[{src:'images/s2s-shelter.jpg',cap:'Shelter home visit'}],note:'Upload as <code>images/s2s-shelter.jpg</code>'},
+  's2s-food2':{eye:'Surplus2Smiles',title:'On the Ground',desc:'Coordinating with catering teams on-site.',imgs:[{src:'images/s2s-kitchen.jpg',cap:'On-site coordination'}],note:'Upload as <code>images/s2s-kitchen.jpg</code>'},
+  's2s-food3':{eye:'Surplus2Smiles',title:'Community Impact',desc:'Food reaching residents at the shelter home.',imgs:[{src:'images/s2s-impact.jpg',cap:'Community impact'}],note:'Upload as <code>images/s2s-impact.jpg</code>'},
+  's2s-team':{eye:'Surplus2Smiles',title:'Operations',desc:'Logistics and coordination behind Surplus2Smiles.',imgs:[{src:'images/s2s-team.jpg',cap:'Operations'}],note:'Upload as <code>images/s2s-team.jpg</code>'},
+  'uni-cert':{eye:'U&I',title:'Volunteer Certificate',desc:'Certificate issued by U&I confirming participation as a volunteer English and General Knowledge teacher.',imgs:[{src:'images/uni-certificate.jpg',cap:'U&I volunteer certificate'}],note:'Upload as <code>images/uni-certificate.jpg</code>'},
+  'dial-proof':{eye:'Dial to Teach · AID India',title:'Programme Documentation',desc:'Documentation from the Dial to Teach programme, including a letter from the programme founder and a listing on the official AID India website.',imgs:[{src:'images/dial-lor.jpg',cap:'Letter from the Dial to Teach founder'},{src:'images/dial-website.jpg',cap:'Listed on the Dial to Teach website'}],note:'Upload the letter as <code>images/dial-lor.jpg</code> and the website screenshot as <code>images/dial-website.jpg</code>',link:{label:'Dial to Teach / AID India ↗',url:'https://www.aidchicago.org/'}},
+  'beew-proof':{eye:'BEEW',title:'Role Documentation',desc:'Documentation confirming the Head of Operations role at Bangalore Education Empowerment of Women.',imgs:[{src:'images/beew-cert.jpg',cap:'BEEW documentation'}],note:'Upload as <code>images/beew-cert.jpg</code>'},
+  'camp-proof':{eye:'Special Needs Summer Programme',title:'Programme Photos',desc:'Photographs from the summer programme sessions including sports and arts and crafts activities.',imgs:[{src:'images/camp-sports.jpg',cap:'Sports session'},{src:'images/camp-arts.jpg',cap:'Arts and crafts session'}],note:'Upload as <code>images/camp-sports.jpg</code> and <code>images/camp-arts.jpg</code>'},
+  'korean-cert':{eye:'Korean Language',title:'Certificate of Proficiency',desc:'Documentation of Korean language study to classroom proficiency level.',imgs:[{src:'images/korean-cert.jpg',cap:'Korean language certificate'}],note:'Upload as <code>images/korean-cert.jpg</code>'},
+  'spanish-cert':{eye:'Spanish Language',title:'Level 1 and Level 2 Certificates',desc:'Certificates of completion for Spanish Levels 1 and 2. Level 3 currently in progress.',imgs:[{src:'images/spanish-level1.jpg',cap:'Spanish Level 1 certificate'},{src:'images/spanish-level2.jpg',cap:'Spanish Level 2 certificate'}],note:'Upload as <code>images/spanish-level1.jpg</code> and <code>images/spanish-level2.jpg</code>'}
 };
 function openModal(id){
   const d=MODALS[id];if(!d)return;
@@ -618,13 +599,7 @@ function openModal(id){
 function closeModal(){document.getElementById('modal-backdrop').classList.remove('open');document.body.style.overflow='';}
 function handleBackdropClick(e){if(e.target===document.getElementById('modal-backdrop'))closeModal();}
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();});
-const secs=document.querySelectorAll('[id]');
-const navAs=document.querySelectorAll('.s-nav a');
-window.addEventListener('scroll',()=>{
-  let cur='';
-  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-140)cur=s.id;});
-  navAs.forEach(a=>{a.classList.remove('active');if(a.getAttribute('href')==='#'+cur)a.classList.add('active');});
-});
+window.addEventListener('scroll',()=>{document.getElementById('topnav').classList.toggle('scrolled',window.scrollY>80);});
 </script>
 </body>
 </html>
