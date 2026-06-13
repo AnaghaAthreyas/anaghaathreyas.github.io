@@ -104,6 +104,8 @@ body{font-family:var(--sans);background:var(--stone);color:var(--ink);line-heigh
 .t-desc{font-size:.91rem;color:var(--ink-muted);line-height:1.85}
 .t-story{background:var(--forest-light);border:1px solid var(--forest-border);border-left:3px solid var(--forest);border-radius:0 8px 8px 0;padding:1.15rem 1.5rem;margin-top:1.15rem;font-size:.89rem;color:var(--ink-mid);line-height:1.85}
 .t-story strong{color:var(--forest);font-weight:600}
+.t-prog{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.85rem}
+.t-badge{font-family:var(--mono);font-size:.62rem;letter-spacing:.06em;padding:.22rem .7rem;border-radius:3px;background:var(--forest-light);border:1px solid var(--forest-border);color:var(--forest)}
 
 /* PROJECTS */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
@@ -155,6 +157,9 @@ body{font-family:var(--sans);background:var(--stone);color:var(--ink);line-heigh
 .vol-card p{font-size:.85rem;color:var(--ink-muted);line-height:1.75;margin-bottom:1.1rem}
 .view-btn{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--forest);background:none;border:none;padding:0;cursor:pointer;transition:gap .2s}
 .view-btn:hover{gap:.7rem}
+.ext-link{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--forest);text-decoration:none;transition:gap .2s;margin-top:.35rem}
+.ext-link:hover{gap:.7rem}
+.vol-actions{display:flex;flex-direction:column;gap:.35rem}
 
 /* SKILLS */
 .skill-group{margin-bottom:2.75rem}
@@ -164,16 +169,30 @@ body{font-family:var(--sans);background:var(--stone);color:var(--ink);line-heigh
 .pill:hover{border-color:var(--forest-border)}
 .pill.forest{background:var(--forest-light);border-color:var(--forest-border);color:var(--forest)}
 .pill.warm{background:var(--gold-light);border-color:var(--gold-border);color:var(--gold)}
-.lang-pills{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:3.5rem}
-.lpill{font-family:var(--mono);font-size:.74rem;padding:.38rem 1.05rem;border-radius:4px;border:1px solid var(--border);color:var(--ink-muted);background:var(--stone);letter-spacing:.02em}
-.lpill.click{border-color:var(--gold-border);color:var(--gold);background:var(--gold-light);cursor:pointer;transition:all .2s}
-.lpill.click:hover{background:#F0E4C0}
+
+/* LANGUAGES */
+.lang-enthusiast{font-size:.97rem;color:var(--ink-muted);line-height:1.88;max-width:560px;margin-bottom:1.75rem}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:3.5rem}
+@media(max-width:640px){.lang-grid{grid-template-columns:1fr}}
+.lang-card{background:var(--stone);border:1px solid var(--border);border-radius:8px;padding:1.25rem 1.4rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:border-color .2s}
+.lang-card.clickable{cursor:pointer}
+.lang-card.clickable:hover{border-color:var(--forest-border);background:var(--forest-light)}
+.lang-name{font-size:.9rem;font-weight:600;color:var(--ink)}
+.lang-name.underline{text-decoration:underline;text-underline-offset:3px}
+.lang-level{font-family:var(--mono);font-size:.65rem;color:var(--ink-faint);letter-spacing:.05em}
+.lang-arrow{font-family:var(--mono);font-size:.7rem;color:var(--forest);opacity:0;transition:opacity .2s}
+.lang-card.clickable:hover .lang-arrow{opacity:1}
+
 .int-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
 @media(max-width:640px){.int-grid{grid-template-columns:1fr}}
 .int-card{background:var(--stone);border:1px solid var(--border);border-radius:8px;padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
 .int-icon{font-size:1.5rem;flex-shrink:0}
 .int-card h4{font-size:.9rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
 .int-card p{font-size:.83rem;color:var(--ink-muted);line-height:1.68}
+.int-card-photos{display:flex;gap:.4rem;margin-top:.75rem;flex-wrap:wrap}
+.int-photo{width:52px;height:52px;border-radius:5px;object-fit:cover;border:1px solid var(--border);cursor:pointer;transition:transform .2s}
+.int-photo:hover{transform:scale(1.05)}
+.int-photo-slot{width:52px;height:52px;border-radius:5px;background:var(--forest-light);border:1px dashed var(--forest-border);display:flex;align-items:center;justify-content:center;font-size:.55rem;color:var(--forest);text-align:center;padding:.2rem;line-height:1.3}
 
 /* CONTACT */
 .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
@@ -215,7 +234,7 @@ footer a:hover{color:rgba(255,255,255,0.6)}
 .modal-note strong{font-weight:600}
 .modal-note code{background:rgba(139,105,20,.1);border-radius:3px;padding:.1rem .35rem}
 .modal-link{padding:0 2.25rem 2.25rem}
-.modal-link a{font-family:var(--mono);font-size:.72rem;color:var(--forest);text-decoration:none;letter-spacing:.04em}
+.modal-link a{font-family:var(--mono);font-size:.72rem;color:var(--forest);text-decoration:none;letter-spacing:.04em;display:block;margin-bottom:.5rem}
 .modal-link a:hover{text-decoration:underline}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--stone)}
@@ -271,9 +290,9 @@ footer a:hover{color:rgba(255,255,255,0.6)}
   <div class="strip-div"></div>
   <div class="strip-stat"><div class="strip-num">MS</div><div class="strip-lbl">Finance, Northeastern</div></div>
   <div class="strip-div"></div>
-  <div class="strip-stat"><div class="strip-num">80+</div><div class="strip-lbl">Lives supported through NGO</div></div>
+  <div class="strip-stat"><div class="strip-num">100s</div><div class="strip-lbl">Lives nourished through NGO</div></div>
   <div class="strip-div"></div>
-  <div class="strip-stat"><div class="strip-num">5</div><div class="strip-lbl">Languages</div></div>
+  <div class="strip-stat"><div class="strip-num">✦</div><div class="strip-lbl">Language enthusiast</div></div>
 </div>
 
 <!-- ABOUT -->
@@ -296,8 +315,8 @@ footer a:hover{color:rgba(255,255,255,0.6)}
       <p>Tax Operations · Goldman Sachs<br>FP&amp;A · Mitel Communications<br>Equity Research · 360 Huntington Fund</p>
     </div>
     <div class="a-card">
-      <div class="a-card-top"><div class="a-icon">✈️</div><h3>Location &amp; Availability</h3></div>
-      <p>Currently based in Boston. Open to roles across the United States and available to relocate for the right opportunity.</p>
+      <div class="a-card-top"><div class="a-icon">🔍</div><h3>Actively Seeking</h3></div>
+      <p>Currently seeking full-time roles in accounting, finance, tax, or related fields across the United States. Available immediately upon graduation in August 2026.</p>
     </div>
   </div>
 </div>
@@ -312,27 +331,36 @@ footer a:hover{color:rgba(255,255,255,0.6)}
   <h2 class="s-h">Professional<br><em>experience</em></h2>
   <p class="s-p">Each role has added a distinct dimension to how I approach financial work, from the precision of tax compliance in financial services to the strategic framing of FP&amp;A in a technology environment.</p>
   <div class="timeline">
+
     <div class="t-item">
       <p class="t-meta">2024 – PRESENT · BOSTON, MA</p>
       <p class="t-role">Equity Research Analyst</p>
       <p class="t-org">360 Huntington Fund · Northeastern University</p>
       <p class="t-desc">A student-managed investment fund operating with real capital. Responsibilities include building financial models, conducting fundamental equity research, and presenting investment recommendations to a portfolio committee. The experience reinforces disciplined analysis and clear communication under conditions where decisions carry actual consequences.</p>
     </div>
+
     <div class="t-item">
-      <p class="t-meta">2022 – 2023 · BANGALORE, INDIA</p>
-      <p class="t-role">Senior Analyst, Tax Operations</p>
+      <p class="t-meta">2021 – 2023 · BANGALORE, INDIA</p>
+      <p class="t-role">Summer Analyst → Analyst → Senior Analyst, Tax Operations</p>
       <p class="t-org">Goldman Sachs</p>
-      <p class="t-desc">Supported high-volume, high-accuracy tax reporting for a global investment banking institution. The work demanded precision across complex financial instruments and institutional client structures. Beyond day-to-day operations, I identified an opportunity to improve how the team worked.</p>
+      <p class="t-desc">What began as a summer internship became a two-year journey of progressive responsibility within one of the world's leading investment banking institutions. Starting as a Summer Analyst, I was offered a full-time Analyst position upon completion of the internship, and subsequently promoted to Senior Analyst within the Tax Operations division. Each step brought greater ownership over complex, high-stakes work involving tax reporting across institutional client structures and financial instruments.</p>
       <div class="t-story">
-        <strong>Process improvement at Goldman Sachs:</strong> A significant portion of each week was consumed by manual reconciliation of tax data across multiple spreadsheets. The process was repetitive, time-consuming, and introduced unnecessary risk of error. I documented the full workflow, identified the inefficiencies, and designed an automated solution that substantially reduced the time required for reconciliation. The initiative was self-directed. I have carried that same orientation toward process improvement into every role since.
+        <strong>A process improvement worth noting:</strong> A significant portion of each week was consumed by manual reconciliation of tax data across multiple spreadsheets — repetitive, time-consuming, and carrying unnecessary risk of error. I documented the full workflow, identified the inefficiencies, and designed an automated solution that substantially reduced the time required for reconciliation. The initiative was entirely self-directed. It reflects a working style I carry into every role: if a process can be made more reliable, it should be.
+      </div>
+      <div class="t-prog">
+        <span class="t-badge">Summer Analyst</span>
+        <span class="t-badge">→ Analyst</span>
+        <span class="t-badge">→ Senior Analyst</span>
       </div>
     </div>
+
     <div class="t-item">
       <p class="t-meta">2021 – 2022 · BANGALORE, INDIA</p>
       <p class="t-role">Associate Financial Analyst, FP&amp;A</p>
       <p class="t-org">Mitel Communications</p>
       <p class="t-desc">Contributed to financial planning and analysis at a global communications technology company. Built forecasting models, conducted variance analyses, and prepared reporting packages for senior leadership. Developed an early appreciation for how financial narrative, not just financial data, shapes organisational decision-making.</p>
     </div>
+
   </div>
 </div>
 </div>
@@ -380,7 +408,7 @@ footer a:hover{color:rgba(255,255,255,0.6)}
   <div class="ai-box">
     <p class="ai-box-label">Approach</p>
     <h3>On technology and process</h3>
-    <p>I take a genuine interest in applying technology to improve financial workflows. At Goldman Sachs, I developed a process automation without being asked to, because the inefficiency was evident and the solution was within reach. That same orientation informs how I approach analytical work today. Whether through Python tooling, data visualisation, or structured modelling, I look for opportunities to make processes more reliable, efficient, and useful to the people who depend on them.</p>
+    <p>I take a genuine interest in applying technology to improve financial workflows. At Goldman Sachs, I developed a process automation without being asked to, because the inefficiency was evident and the solution was within reach. That same orientation informs how I approach analytical work today. Whether through Python tooling, data visualisation, or structured modelling, I look for opportunities to make processes more reliable, efficient, and useful to the people who depend on them. I am also actively exploring the intersection of artificial intelligence and finance, particularly how large language models and automation can support financial analysis, reporting, and decision-making.</p>
   </div>
 </div>
 </div>
@@ -394,77 +422,75 @@ footer a:hover{color:rgba(255,255,255,0.6)}
 
   <div class="s2s-layout">
     <div class="s2s-stats">
-      <div><div class="stat-num">80+</div><div class="stat-lbl">Residents supported</div></div>
+      <div><div class="stat-num">100s</div><div class="stat-lbl">of lives nourished</div></div>
       <div><div class="stat-num">20%</div><div class="stat-lbl">Avg. food waste at events</div></div>
     </div>
     <div class="s2s-text">
       <h3>Surplus2Smiles</h3>
-      <p>Large social gatherings in India routinely generate significant food surplus. At an event I attended, I spoke with the catering team and learned that on average, <strong>20 percent of all food prepared goes to waste</strong> due to the perishable nature of cooked food and the absence of any redistribution infrastructure.</p>
-      <p>In response, I established Surplus2Smiles, an initiative to connect event organisers with a local shelter home housing over 80 residents across age groups and abilities. Prior to formalising any partnership, I visited the facility to assess storage capacity and operational readiness. The channel has since run consistently, redirecting food that would otherwise go to waste to people who benefit from it.</p>
+      <p>Large social gatherings in India routinely generate significant food surplus. At an event I attended, I spoke with the catering team and learned that on average, <strong>20 percent of all food prepared goes to waste</strong> — not because of scarcity of need, but because no infrastructure exists to move it from where it is to where it is needed.</p>
+      <p>In response, I established Surplus2Smiles, an initiative connecting event organisers with a local shelter home housing residents across age groups and abilities. Before formalising any partnership, I visited the facility to assess storage capacity and operational readiness. The channel has since run consistently, redirecting food that would otherwise go to waste to hundreds of people who benefit from it.</p>
     </div>
   </div>
 
-  <p class="gallery-lbl">Surplus2Smiles</p>
+  <p class="gallery-lbl">Gallery</p>
   <div class="photo-grid">
-    <div class="photo-tile" onclick="openModal('s2s-reg')">
+    <div class="photo-tile" onclick="openModal('s2s-1')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Registration</span>
+      <span>Surplus2Smiles</span>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-food1')">
+    <div class="photo-tile" onclick="openModal('s2s-2')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Food Distribution</span>
+      <span>Surplus2Smiles</span>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-shelter')">
+    <div class="photo-tile" onclick="openModal('s2s-3')">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Shelter Home Visit</span>
-    </div>
-    <div class="photo-tile" onclick="openModal('s2s-food2')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>On the Ground</span>
-    </div>
-    <div class="photo-tile" onclick="openModal('s2s-food3')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Community Impact</span>
-    </div>
-    <div class="photo-tile" onclick="openModal('s2s-team')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Operations</span>
+      <span>Surplus2Smiles</span>
     </div>
   </div>
 
   <p class="s-eye" style="margin-bottom:.9rem">Volunteering</p>
   <h3 style="font-family:var(--serif);font-size:1.9rem;color:var(--ink);margin-bottom:.75rem;font-weight:400">Additional initiatives</h3>
-  <p style="font-size:.93rem;color:var(--ink-muted);max-width:580px;line-height:1.88;margin-bottom:2.25rem">The following represent a range of volunteering engagements across education, infrastructure, and welfare — each undertaken independently of any professional or academic obligation.</p>
+  <p style="font-size:.93rem;color:var(--ink-muted);max-width:580px;line-height:1.88;margin-bottom:2.25rem">A range of volunteering engagements across education, infrastructure, and welfare, each undertaken independently of any professional or academic obligation.</p>
   <div class="vol-grid">
+
     <div class="vol-card">
       <div class="vol-icon">📚</div>
       <h3>U&amp;I — English and General Knowledge</h3>
       <p>Volunteered with U&amp;I, a Bangalore-based education organisation, teaching English and general knowledge to children from underserved communities on a regular weekly basis.</p>
-      <button class="view-btn" onclick="openModal('uni-cert')">View certificate <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <div class="vol-actions">
+        <button class="view-btn" onclick="openModal('uni-cert')">View certificate <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
+
     <div class="vol-card">
       <div class="vol-icon">📞</div>
       <h3>Dial to Teach — AID India</h3>
-      <p>Participated in Dial to Teach, an AID India initiative providing telephone-based English language instruction to children from manual scavenging families in rural India. Documentation includes a letter from the programme founder and a listing on the official website.</p>
-      <button class="view-btn" onclick="openModal('dial-proof')">View documentation <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <p>Participated in Dial to Teach, an AID India initiative providing telephone-based English language instruction to children from manual scavenging families in rural India. This work is supported by a recommendation letter from the programme founder.</p>
+      <div class="vol-actions">
+        <button class="view-btn" onclick="openModal('dial-proof')">View recommendation letter <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
-    <div class="vol-card">
-      <div class="vol-icon">🚿</div>
-      <h3>Sanitation Infrastructure — Rural Andhra Pradesh</h3>
-      <p>Contributed to a fundraising effort to construct washroom facilities at a rural school in Andhra Pradesh, addressing a basic infrastructure gap with a direct impact on attendance and hygiene.</p>
-    </div>
+
     <div class="vol-card">
       <div class="vol-icon">👩‍🎓</div>
-      <h3>BEEW — Head of Operations</h3>
-      <p>Served as Head of Operations at Bangalore Education Empowerment of Women, an organisation providing scholarships to young women pursuing higher education. Responsibilities included document verification, scholarship disbursement, and career guidance.</p>
-      <button class="view-btn" onclick="openModal('beew-proof')">View documentation <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <h3>Education Empowerment for Women</h3>
+      <p>Served as Head of Operations at Education Empowerment for Women, an organisation providing scholarships to young women pursuing higher education. Responsibilities included document verification, scholarship disbursement, and strategic career guidance to support employment readiness.</p>
+      <div class="vol-actions">
+        <button class="view-btn" onclick="openModal('beew-proof')">View documentation <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <a class="ext-link" href="https://ee4women.org/" target="_blank">Visit the organisation ↗</a>
+        <a class="ext-link" href="https://www.youtube.com/watch?v=bBmvrCOr5yo" target="_blank">Watch Anagha's talk ↗</a>
+      </div>
     </div>
+
     <div class="vol-card">
       <div class="vol-icon">🎨</div>
       <h3>Special Needs Summer Programme</h3>
-      <p>Volunteered at a structured summer programme for children with special needs, facilitating sports activities as well as arts and crafts sessions focused on cognitive engagement and social participation.</p>
-      <button class="view-btn" onclick="openModal('camp-proof')">View photos <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      <p>Volunteered at a structured summer programme for children with special needs, facilitating sports sessions alongside arts and crafts activities designed to support cognitive development, motor skills, and social engagement.</p>
+      <div class="vol-actions">
+        <button class="view-btn" onclick="openModal('camp-proof')">View photos <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+      </div>
     </div>
+
   </div>
 </div>
 </div>
@@ -477,53 +503,109 @@ footer a:hover{color:rgba(255,255,255,0.6)}
   <div class="skill-group">
     <p class="sg-lbl">Accounting &amp; Finance</p>
     <div class="skill-row">
-      <span class="pill">Financial Accounting</span><span class="pill">Management Accounting</span>
-      <span class="pill">Tax Accounting</span><span class="pill">FP&amp;A</span>
-      <span class="pill">Fund Accounting</span><span class="pill">Equity Research</span>
-      <span class="pill">Financial Modelling</span><span class="pill">Variance Analysis</span>
-      <span class="pill">Budgeting &amp; Forecasting</span><span class="pill">Corporate Finance</span>
-      <span class="pill">Business Case Analysis</span><span class="pill">Fixed Income</span>
-      <span class="pill">Derivatives</span><span class="pill">Treasury</span>
-      <span class="pill">General Ledger</span><span class="pill">Month-End Close</span>
+      <span class="pill">Financial Accounting</span>
+      <span class="pill">Management Accounting</span>
+      <span class="pill">Tax Accounting</span>
+      <span class="pill">FP&amp;A</span>
+      <span class="pill">Fund Accounting</span>
+      <span class="pill">Equity Research</span>
+      <span class="pill">Financial Modelling</span>
+      <span class="pill">Variance Analysis</span>
+      <span class="pill">Budgeting &amp; Forecasting</span>
+      <span class="pill">Corporate Finance</span>
+      <span class="pill">Business Case Analysis</span>
+      <span class="pill">Fixed Income</span>
+      <span class="pill">Derivatives</span>
+      <span class="pill">Treasury Operations</span>
+      <span class="pill">General Ledger</span>
+      <span class="pill">Month-End Close</span>
       <span class="pill">Financial Reporting</span>
+      <span class="pill">Cash Flow Analysis</span>
+      <span class="pill">Investment Analysis</span>
     </div>
   </div>
   <div class="skill-group">
     <p class="sg-lbl">Standards &amp; Compliance</p>
     <div class="skill-row">
-      <span class="pill forest">US GAAP</span><span class="pill forest">IFRS</span>
-      <span class="pill forest">Audit Fundamentals</span><span class="pill forest">Internal Controls</span>
-      <span class="pill forest">Tax Compliance</span><span class="pill forest">Regulatory Reporting</span>
+      <span class="pill forest">US GAAP</span>
+      <span class="pill forest">IFRS</span>
+      <span class="pill forest">Audit Fundamentals</span>
+      <span class="pill forest">Internal Controls</span>
+      <span class="pill forest">Tax Compliance</span>
+      <span class="pill forest">Regulatory Reporting</span>
       <span class="pill forest">SOX Awareness</span>
+
     </div>
   </div>
   <div class="skill-group">
     <p class="sg-lbl">Technical Tools</p>
     <div class="skill-row">
-      <span class="pill warm">Python</span><span class="pill warm">Excel / VBA</span>
-      <span class="pill warm">Power BI</span><span class="pill warm">Bloomberg Terminal</span>
+      <span class="pill warm">Python</span>
+      <span class="pill warm">Excel / VBA</span>
+      <span class="pill warm">Power BI</span>
+      <span class="pill warm">Bloomberg Terminal</span>
       <span class="pill warm">Process Automation</span>
-      <span class="pill">QuickBooks</span><span class="pill">SAP (exposure)</span>
+      <span class="pill warm">AI for Finance</span>
+      <span class="pill">SAP ERP</span>
       <span class="pill">Financial Data Analysis</span>
+      <span class="pill">MS Office Suite</span>
     </div>
   </div>
 
   <p class="s-eye" style="margin-top:.5rem;margin-bottom:.8rem">Languages</p>
-  <p style="font-size:.93rem;color:var(--ink-muted);line-height:1.88;max-width:560px;margin-bottom:1.5rem">I have a long-standing interest in language learning. In addition to my native languages, I have studied Korean to classroom proficiency and am currently completing the third level of a formal Spanish programme.</p>
-  <div class="lang-pills">
-    <span class="lpill">English — Fluent</span>
-    <span class="lpill">Kannada — Native</span>
-    <span class="lpill">Hindi / Tamil — Conversational</span>
-    <span class="lpill click" onclick="openModal('korean-cert')">Korean — Classroom Proficiency ↗</span>
-    <span class="lpill click" onclick="openModal('spanish-cert')">Spanish — Level 3 in Progress ↗</span>
+  <p class="lang-enthusiast">I am a language enthusiast. Alongside the languages I grew up speaking, I have studied Korean to a level where I can read, write, and understand it comfortably, and I am currently working through Spanish, having completed two formal levels with a third in progress.</p>
+  <div class="lang-grid">
+    <div class="lang-card">
+      <div>
+        <div class="lang-name">English</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+    </div>
+    <div class="lang-card clickable" onclick="openModal('korean-cert')">
+      <div>
+        <div class="lang-name underline">Korean 한국어</div>
+        <div class="lang-level">Read, write &amp; understand</div>
+      </div>
+      <span class="lang-arrow">↗</span>
+    </div>
+    <div class="lang-card clickable" onclick="openModal('spanish-cert')">
+      <div>
+        <div class="lang-name underline">Spanish</div>
+        <div class="lang-level">Levels 1 &amp; 2 complete · Level 3 in progress</div>
+      </div>
+      <span class="lang-arrow">↗</span>
+    </div>
   </div>
 
   <p class="s-eye" style="margin-bottom:.9rem">Personal Interests</p>
   <div class="int-grid">
-    <div class="int-card"><div class="int-icon">🥾</div><div><h4>Hiking and the Outdoors</h4><p>I enjoy hiking and beach treks. Time outdoors tends to provide perspective that is difficult to find elsewhere.</p></div></div>
-    <div class="int-card"><div class="int-icon">☕</div><div><h4>Coffee and Baking</h4><p>A careful appreciation for coffee and an experimental approach to baking. Both reward attention to detail.</p></div></div>
-    <div class="int-card"><div class="int-icon">🌐</div><div><h4>Language Learning</h4><p>Currently working through the third level of a formal Spanish programme. Learning a language changes how you engage with the world.</p></div></div>
-    <div class="int-card"><div class="int-icon">✈️</div><div><h4>Travel</h4><p>I make a point of exploring new places. Within New England, I have visited Salem, Provincetown, and Acadia, among others.</p></div></div>
+    <div class="int-card">
+      <div class="int-icon">🥾</div>
+      <div>
+        <h4>Hiking and the Outdoors</h4>
+        <p>I enjoy hiking and beach treks. Time outdoors tends to provide perspective that is difficult to find elsewhere.</p>
+      </div>
+    </div>
+    <div class="int-card">
+      <div class="int-icon">☕</div>
+      <div>
+        <h4>Coffee and Baking</h4>
+        <p>A careful appreciation for coffee and an experimental approach to baking. Both reward attention to detail.</p>
+        <!-- Add your baking photos below. Example: <img src="images/baking1.jpg" class="int-photo" onclick="openModal('baking')" alt="baking"/> -->
+        <div class="int-card-photos">
+          <div class="int-photo-slot">Add photo</div>
+          <div class="int-photo-slot">Add photo</div>
+          <div class="int-photo-slot">Add photo</div>
+        </div>
+      </div>
+    </div>
+    <div class="int-card">
+      <div class="int-icon">🌐</div>
+      <div>
+        <h4>Language Learning</h4>
+        <p>Currently working through the third level of a formal Spanish programme. Learning a language changes how you engage with the world.</p>
+      </div>
+    </div>
   </div>
 </div>
 </div>
@@ -534,8 +616,8 @@ footer a:hover{color:rgba(255,255,255,0.6)}
   <div class="contact-layout">
     <div class="contact-left">
       <p class="s-eye">Contact</p>
-      <h2 class="s-h">Get in<br><em>touch</em></h2>
-      <p class="s-p">I am open to roles in accounting, corporate finance, FP&amp;A, tax, fund accounting, treasury, and financial operations across the United States. I welcome enquiries from organisations where rigour and purpose are taken equally seriously.</p>
+      <h2 class="s-h">Open to<br><em>opportunities</em></h2>
+      <p class="s-p">I am actively seeking roles in accounting, corporate finance, FP&amp;A, tax, fund accounting, treasury, and financial operations across the United States. I would welcome the opportunity to connect.</p>
     </div>
     <div class="c-links">
       <a href="https://www.linkedin.com/in/anagha-a-450859211" target="_blank" class="c-card">
@@ -574,25 +656,21 @@ footer a:hover{color:rgba(255,255,255,0.6)}
 
 <script>
 const MODALS={
-  's2s-reg':{eye:'Surplus2Smiles',title:'Registration',desc:'Official registration documentation for Surplus2Smiles.',imgs:[{src:'images/s2s-registration.jpg',cap:'Registration document'}],note:'Upload as <code>images/s2s-registration.jpg</code>'},
-  's2s-food1':{eye:'Surplus2Smiles',title:'Food Distribution',desc:'Surplus food redistributed from events to the shelter home.',imgs:[{src:'images/s2s-food1.jpg',cap:'Distribution event 1'},{src:'images/s2s-food2.jpg',cap:'Distribution event 2'}],note:'Upload as <code>images/s2s-food1.jpg</code> and <code>images/s2s-food2.jpg</code>'},
-  's2s-shelter':{eye:'Surplus2Smiles',title:'Shelter Home Visit',desc:'Site visit and assessment of the partner shelter home.',imgs:[{src:'images/s2s-shelter.jpg',cap:'Shelter home visit'}],note:'Upload as <code>images/s2s-shelter.jpg</code>'},
-  's2s-food2':{eye:'Surplus2Smiles',title:'On the Ground',desc:'Coordinating with catering teams on-site.',imgs:[{src:'images/s2s-kitchen.jpg',cap:'On-site coordination'}],note:'Upload as <code>images/s2s-kitchen.jpg</code>'},
-  's2s-food3':{eye:'Surplus2Smiles',title:'Community Impact',desc:'Food reaching residents at the shelter home.',imgs:[{src:'images/s2s-impact.jpg',cap:'Community impact'}],note:'Upload as <code>images/s2s-impact.jpg</code>'},
-  's2s-team':{eye:'Surplus2Smiles',title:'Operations',desc:'Logistics and coordination behind Surplus2Smiles.',imgs:[{src:'images/s2s-team.jpg',cap:'Operations'}],note:'Upload as <code>images/s2s-team.jpg</code>'},
-  'uni-cert':{eye:'U&I',title:'Volunteer Certificate',desc:'Certificate issued by U&I confirming participation as a volunteer English and General Knowledge teacher.',imgs:[{src:'images/uni-certificate.jpg',cap:'U&I volunteer certificate'}],note:'Upload as <code>images/uni-certificate.jpg</code>'},
-  'dial-proof':{eye:'Dial to Teach · AID India',title:'Programme Documentation',desc:'Documentation from the Dial to Teach programme, including a letter from the programme founder and a listing on the official AID India website.',imgs:[{src:'images/dial-lor.jpg',cap:'Letter from the Dial to Teach founder'},{src:'images/dial-website.jpg',cap:'Listed on the Dial to Teach website'}],note:'Upload the letter as <code>images/dial-lor.jpg</code> and the website screenshot as <code>images/dial-website.jpg</code>',link:{label:'Dial to Teach / AID India ↗',url:'https://www.aidchicago.org/'}},
-  'beew-proof':{eye:'BEEW',title:'Role Documentation',desc:'Documentation confirming the Head of Operations role at Bangalore Education Empowerment of Women.',imgs:[{src:'images/beew-cert.jpg',cap:'BEEW documentation'}],note:'Upload as <code>images/beew-cert.jpg</code>'},
-  'camp-proof':{eye:'Special Needs Summer Programme',title:'Programme Photos',desc:'Photographs from the summer programme sessions including sports and arts and crafts activities.',imgs:[{src:'images/camp-sports.jpg',cap:'Sports session'},{src:'images/camp-arts.jpg',cap:'Arts and crafts session'}],note:'Upload as <code>images/camp-sports.jpg</code> and <code>images/camp-arts.jpg</code>'},
-  'korean-cert':{eye:'Korean Language',title:'Certificate of Proficiency',desc:'Documentation of Korean language study to classroom proficiency level.',imgs:[{src:'images/korean-cert.jpg',cap:'Korean language certificate'}],note:'Upload as <code>images/korean-cert.jpg</code>'},
-  'spanish-cert':{eye:'Spanish Language',title:'Level 1 and Level 2 Certificates',desc:'Certificates of completion for Spanish Levels 1 and 2. Level 3 currently in progress.',imgs:[{src:'images/spanish-level1.jpg',cap:'Spanish Level 1 certificate'},{src:'images/spanish-level2.jpg',cap:'Spanish Level 2 certificate'}],note:'Upload as <code>images/spanish-level1.jpg</code> and <code>images/spanish-level2.jpg</code>'}
+  's2s-1':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-1.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-1.jpg</code>'},
+  's2s-2':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-2.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-2.jpg</code>'},
+  's2s-3':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-3.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-3.jpg</code>'},
+  'uni-cert':{eye:'U&I',title:'Volunteer Certificate',desc:'Certificate issued by U&I confirming participation as a volunteer teacher.',imgs:[{src:'images/uni-certificate.jpg',cap:'U&I volunteer certificate'}],note:'Upload as <code>images/uni-certificate.jpg</code>'},
+  'dial-proof':{eye:'Dial to Teach · AID India',title:'Recommendation Letter',desc:'A recommendation letter from the founder of Dial to Teach confirming participation in the programme.',imgs:[{src:'images/dial-lor.jpg',cap:'Recommendation letter'}],note:'Upload your letter as <code>images/dial-lor.jpg</code>'},
+  'beew-proof':{eye:'Education Empowerment for Women',title:'Role Documentation',desc:'Documentation confirming the Head of Operations role at Education Empowerment for Women.',imgs:[{src:'images/beew-cert.jpg',cap:'EE4W documentation'}],note:'Upload as <code>images/beew-cert.jpg</code>'},
+  'camp-proof':{eye:'Special Needs Summer Programme',title:'Programme Photos',desc:'Photographs from summer programme sessions including sports and arts and crafts activities.',imgs:[{src:'images/camp-1.jpg',cap:'Sports session'},{src:'images/camp-2.jpg',cap:'Arts and crafts session'}],note:'Upload as <code>images/camp-1.jpg</code> and <code>images/camp-2.jpg</code>'},
+  'korean-cert':{eye:'Korean Language',title:'Certificate of Proficiency',desc:'Documentation of Korean language study, confirming ability to read, write, and understand Korean.',imgs:[{src:'images/korean-cert.jpg',cap:'Korean language certificate'}],note:'Upload as <code>images/korean-cert.jpg</code>'},
+  'spanish-cert':{eye:'Spanish Language',title:'Level 1 and Level 2 Certificates',desc:'Certificates confirming completion of Spanish Levels 1 and 2. Level 3 currently in progress.',imgs:[{src:'images/spanish-level1.jpg',cap:'Spanish Level 1 certificate'},{src:'images/spanish-level2.jpg',cap:'Spanish Level 2 certificate'}],note:'Upload as <code>images/spanish-level1.jpg</code> and <code>images/spanish-level2.jpg</code>'}
 };
 function openModal(id){
   const d=MODALS[id];if(!d)return;
   const imgs=d.imgs.map(i=>`<div class="modal-img-real"><img src="${i.src}" alt="${i.cap}" onerror="this.parentElement.outerHTML='<div class=modal-placeholder><svg width=26 height=26 fill=none stroke=currentColor stroke-width=1.5 viewBox=\\'0 0 24 24\\'><rect x=3 y=3 width=18 height=18 rx=2/><circle cx=8.5 cy=8.5 r=1.5/><path d=\\'m21 15-5-5L5 21\\'/></svg><span>${i.cap}</span><span style=font-size:.72rem;opacity:.5>Upload your photo to see it here</span></div>'"/><p class="modal-img-cap">${i.cap}</p></div>`).join('');
   const note=d.note?`<div class="modal-note"><strong>To add your photo:</strong> ${d.note}</div>`:'';
-  const link=d.link?`<div class="modal-link"><a href="${d.link.url}" target="_blank">${d.link.label}</a></div>`:'';
-  document.getElementById('modal-content').innerHTML=`<div class="modal-header"><p class="modal-eye">${d.eye}</p><h2>${d.title}</h2><p>${d.desc}</p></div><div class="modal-imgs">${imgs}</div>${note}${link}`;
+  document.getElementById('modal-content').innerHTML=`<div class="modal-header"><p class="modal-eye">${d.eye}</p><h2>${d.title}</h2>${d.desc?`<p>${d.desc}</p>`:''}</div><div class="modal-imgs">${imgs}</div>${note}`;
   document.getElementById('modal-backdrop').classList.add('open');
   document.body.style.overflow='hidden';
 }
