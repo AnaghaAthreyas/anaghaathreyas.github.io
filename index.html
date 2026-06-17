@@ -577,16 +577,16 @@ const MODALS={
     title:'Equity Research Analyst',
     desc:'A student-managed investment fund at Northeastern University operating with real capital.',
     imgs:[
-      {src:'images/huntington-1.jpg',cap:'360 Huntington Fund'},
-      {src:'images/huntington-2.jpg',cap:'360 Huntington Fund'}
+      {src:'images/huntington-1.jpeg',cap:'360 Huntington Fund'},
+      {src:'images/huntington-2.jpeg',cap:'360 Huntington Fund'}
     ],
-    note:'Upload as <code>images/huntington-1.jpg</code> and <code>images/huntington-2.jpg</code>'
+    note:'Upload as <code>images/huntington-1.jpeg</code> and <code>images/huntington-2.jpeg</code>'
   },
-  's2s-1':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-1.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-1.jpg</code>'},
-  's2s-2':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-2.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-2.jpg</code>'},
-  's2s-3':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-3.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-3.jpg</code>'},
-  's2s-4':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-4.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-4.jpg</code>'},
-  's2s-5':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-5.jpg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-5.jpg</code>'},
+  's2s-1':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-1.jpeg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-1.jpeg</code>'},
+  's2s-2':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-2.jpeg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-2.jpeg</code>'},
+  's2s-3':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-3.jpeg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-3.jpeg</code>'},
+  's2s-4':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-4.jpeg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-4.jpeg</code>'},
+  's2s-5':{eye:'Surplus2Smiles',title:'Gallery',desc:'',imgs:[{src:'images/s2s-5.jpeg',cap:'Surplus2Smiles'}],note:'Upload as <code>images/s2s-5.jpeg</code>'},
   'uni-cert':{
     eye:'U&I',title:'Volunteer Certificate',
     desc:'Certificate issued by U&I confirming participation as a volunteer teacher.',
@@ -603,11 +603,11 @@ const MODALS={
     eye:'Special Needs Summer Programme',title:'Programme Photos',
     desc:'Photographs from summer programme sessions.',
     imgs:[
-      {src:'images/camp-1.jpg',cap:'Summer programme'},
-      {src:'images/camp-2.jpg',cap:'Summer programme'},
-      {src:'images/camp-3.jpg',cap:'Summer programme'}
+      {src:'images/camp-1.jpeg',cap:'Summer programme'},
+      {src:'images/camp-2.jpeg',cap:'Summer programme'},
+      {src:'images/camp-3.jpeg',cap:'Summer programme'}
     ],
-    note:'Upload as <code>images/camp-1.jpg</code>, <code>images/camp-2.jpg</code>, <code>images/camp-3.jpg</code>'
+    note:'Upload as <code>images/camp-1.jpeg</code>, <code>images/camp-2.jpeg</code>, <code>images/camp-3.jpeg</code>'
   },
   'korean-cert':{
     eye:'Korean Language',title:'Certificate of Proficiency',
@@ -618,8 +618,8 @@ const MODALS={
   'spanish-cert':{
     eye:'Spanish Language',title:'Level 1 and Level 2 Certificates',
     desc:'Certificates confirming completion of Spanish Levels 1 and 2. Level 3 currently in progress.',
-    pdf:'images/spanish-certs.pdf',
-    note:'Upload as <code>images/spanish-certs.pdf</code> (combine both into one PDF, or upload separately as <code>images/spanish-level1.pdf</code> and adjust the code)'
+    pdfs:['images/spanish-level1.pdf','images/spanish-level2.pdf'],
+    labels:['Spanish Level 1','Spanish Level 2']
   }
 };
 
@@ -639,19 +639,20 @@ function openModal(id){
 
   if(d.pdf){
     content+=`
-      <div class="modal-imgs">
-        <div class="modal-placeholder">
-          <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-          <span>PDF document</span>
-          <span style="font-size:.72rem;opacity:.6">Upload your file to enable the preview</span>
-        </div>
-      </div>
       <div class="modal-pdf">
         <a href="${d.pdf}" target="_blank">
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           Open PDF ↗
         </a>
       </div>`;
+  }
+  if(d.pdfs){
+    const pdfLinks=d.pdfs.map((p,i)=>`
+      <a href="${p}" target="_blank" style="margin-bottom:.5rem">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        ${d.labels?d.labels[i]:'PDF '+(i+1)} ↗
+      </a>`).join('');
+    content+=`<div class="modal-pdf" style="display:flex;flex-direction:column;gap:.5rem">${pdfLinks}</div>`;
   }
 
   const note=d.note?`<div class="modal-note"><strong>To add your file:</strong> ${d.note}</div>`:'';
