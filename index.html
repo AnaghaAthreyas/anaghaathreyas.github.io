@@ -387,25 +387,20 @@ footer a:hover{color:rgba(255,255,255,0.6)}
 
   <p class="gallery-lbl">Gallery</p>
   <div class="photo-grid">
-    <div class="photo-tile" onclick="openModal('s2s-1')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Surplus2Smiles</span>
+    <div class="photo-tile">
+      <img src="images/s2s-1.jpeg" alt="Surplus2Smiles"/>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-2')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Surplus2Smiles</span>
+    <div class="photo-tile">
+      <img src="images/s2s-2.jpeg" alt="Surplus2Smiles"/>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-3')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Surplus2Smiles</span>
+    <div class="photo-tile">
+      <img src="images/s2s-3.jpeg" alt="Surplus2Smiles"/>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-4')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Surplus2Smiles</span>
+    <div class="photo-tile">
+      <img src="images/s2s-4.jpeg" alt="Surplus2Smiles"/>
     </div>
-    <div class="photo-tile" onclick="openModal('s2s-5')">
-      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
-      <span>Surplus2Smiles</span>
+    <div class="photo-tile">
+      <img src="images/s2s-5.jpeg" alt="Surplus2Smiles"/>
     </div>
   </div>
 
@@ -655,16 +650,13 @@ function openModal(id){
     content+=`<div class="modal-pdf" style="display:flex;flex-direction:column;gap:.5rem">${pdfLinks}</div>`;
   }
 
-  const note=d.note?`<div class="modal-note"><strong>To add your file:</strong> ${d.note}</div>`:'';
-
   document.getElementById('modal-content').innerHTML=`
     <div class="modal-header">
       <p class="modal-eye">${d.eye}</p>
       <h2>${d.title}</h2>
       ${d.desc?`<p>${d.desc}</p>`:''}
     </div>
-    ${content}
-    ${note}`;
+    ${content}`;
 
   document.getElementById('modal-backdrop').classList.add('open');
   document.body.style.overflow='hidden';
